@@ -1,0 +1,18 @@
+img {
+  width: 200px;
+  height: 200px;
+}
+.product {
+  display: inline-block;
+  width: 250px;
+  height: 250px;
+  margin: 10px;
+}
+
+.filter-cotainer {
+  display: flex;
+  flex-direction: column;
+}
+.filter-cotainer button {
+  width: 200px;
+}
