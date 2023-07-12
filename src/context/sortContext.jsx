@@ -14,10 +14,12 @@ export const FilterProvider = ({ children }) => {
     filterReducer,
     initialFilter
   );
+  console.log(productState);
 
-  let filteredData = productState.productData.products;
+  let filteredData = productState.productData;
+  console.log(filteredData.products);
   if (filterState.filterCategory.length > 0) {
-    filteredData = filteredData.filter((data) =>
+    filteredData = filteredData.products.filter((data) =>
       filterState.filterCategory.include(data.category)
     );
   }
