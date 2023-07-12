@@ -4,13 +4,15 @@ import "./index.css";
 import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
-import { CardContext, CardProvider } from "./context/CardContext";
+import { CardProvider } from "./context/CardContext";
 
-import { AuthProvider, AuthContext } from "./context/Auth";
-import { CartContext, CartProvider } from "./context/CartContext";
-import { WishlistContext, WishlistProvider } from "./context/WishlistContext";
-
-export { CardContext, AuthContext, CartContext, WishlistContext };
+import { AuthProvider } from "./context/Auth";
+import { CartProvider } from "./context/CartContext";
+import { FilterProvider } from "./context/sortContext";
+// import {
+//   WishlistContext,
+//   WishlistProvider,
+// } from "./component/context/WishlistContext";
 
 // Call make Server
 makeServer();
@@ -21,9 +23,9 @@ ReactDOM.render(
       <AuthProvider>
         <CardProvider>
           <CartProvider>
-            <WishlistProvider>
+            <FilterProvider>
               <App />
-            </WishlistProvider>
+            </FilterProvider>
           </CartProvider>
         </CardProvider>
       </AuthProvider>

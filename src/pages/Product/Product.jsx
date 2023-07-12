@@ -1,25 +1,37 @@
-import { useContext } from "react";
+// import { useContext } from "react";
+import { productCard } from "../../component/product-Card/productCard";
+import { useProductData } from "../../context/CardContext";
+
 import "./Product.css";
-import { CardContext } from "../../context/CardContext";
-import { CartContext } from "../../context/CartContext";
-import { WishlistContext } from "../../context/WishlistContext";
-export function Product() {
-  const { handleWishlist } = useContext(WishlistContext);
-  const { handleCart } = useContext(CartContext);
-  const { state, dispatch } = useContext(CardContext);
-  const handleRate = (event) => {
-    dispatch({ type: "FILTER_RATE", payload: event.target.value });
-  };
-  const handlePrice = (event) => {
-    dispatch({ type: "FILTER_PRICE", payload: event.target.value });
-  };
-  const handleCategory = (event) => {
-    dispatch({ type: "FILTER_CATEGORY", payload: event.target });
-  };
+// import { CartContext } from "../../context/CartContext";
+// import { WishlistContext } from "../../context/WishlistContext";
+export const Product = () => {
+  const { productState } = useProductData();
+
+  // const { handleWishlist } = useContext(WishlistContext);
+  // const { handleCart } = useContext(CartContext);
+
+  // const handleRate = (event) => {
+  //   dispatch({ type: "FILTER_RATE", payload: event.target.value });
+  // };
+  // const handlePrice = (event) => {
+  //   dispatch({ type: "FILTER_PRICE", payload: event.target.value });
+  // };
+  // const handleCategory = (event) => {
+  //   dispatch({ type: "FILTER_CATEGORY", payload: event.target });
+  // };
 
   return (
     <div className="Home">
-      <div className="filter-cotainer">
+      {productState.isProductLoading ? (
+        <div>
+          <h1>loading</h1>
+        </div>
+      ) : (
+        <div>{}</div>
+      )}
+      <></>
+      {/* <div className="filter-cotainer">
         <button>Clear</button>
         <div className="Filter_Rate">
           <h3>Filter</h3>
@@ -53,20 +65,7 @@ export function Product() {
             </label>
           </form>
         </div>
-      </div>
-      {state?.data?.map((items) => {
-        const { _id, title, rating, price, img } = items;
-        return (
-          <div className="product" key={_id}>
-            <img src={img} alt="name" />
-            <h2>Title:{title}</h2>
-            <p>rating:{rating}</p>
-            <p>price:{price}</p>
-            <button onClick={() => handleCart(items)}>Cart</button>
-            <button onClick={() => handleWishlist(items)}>WishList</button>
-          </div>
-        );
-      })}
+      </div> */}
     </div>
   );
-}
+};

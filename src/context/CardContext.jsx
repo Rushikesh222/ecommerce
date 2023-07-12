@@ -1,72 +1,64 @@
-import { createContext, useEffect, useReducer } from "react";
+import { createContext, useContext, useEffect, useReducer } from "react";
+import { productReducer } from "../Reducer/ProductReducer";
+import axios from "axios";
 
 export const CardContext = createContext();
-const handleReducer = (state, action) => {
-  switch (action.type) {
-    case "FILTER_RATE":
-      return {
-        ...state,
-        data: state.allproduct.filter(
-          (items) => Number(items.rating) <= action.payload
-        ),
-      };
-    case "FILTER_PRICE":
-      return {
-        ...state,
-        data:
-          action.payload === "high"
-            ? state.allproduct.sort((a, b) => b.price - a.price)
-            : action.payload === "low"
-            ? state.allproduct.sort((a, b) => a.price - b.price)
-            : state,
-      };
-    case "FILTER_CATEGORY":
-      return {
-        ...state,
-        data: action.payload.checked
-          ? state.allproduct.filter(
-              (items) => items.category === action.payload.value
-            )
-          : state.allproduct,
-      };
-    case "ADD_CART":
-      return {};
 
-    case "INITIAL_DATA":
-      return {
-        ...state,
-        data: action.payload.products,
-        allproduct: action.payload.products,
-      };
-
-    default:
-      return state;
-  }
-};
-export function CardProvider({ children }) {
-  const [state, dispatch] = useReducer(handleReducer, {
-    data: [],
-    allproduct: [],
-    cart: [],
-  });
+export const CardProvider = ({ children }) => {
+  const initialState = {
+    isProductLoading: false,
+    isCategoryLoading: false,
+    productData: [],
+    categoryData: [],
+  };
+  const [productState, productDispatch] = useReducer(
+    productReducer,
+    initialState
+  );
 
   const getData = async () => {
     try {
-      const res = await fetch("/api/products");
-      const data = await res.json();
-      dispatch({ type: "INITIAL_DATA", payload: data });
+      productDispatch({ type: "products_loading", payload: true });
+      const { status, data } = await axios({
+        method: "GET",
+        url: "/api/products",
+      });
+      if (status === 200 || status === 201) {
+        productDispatch({ type: "get_product", payload: data });
+        productDispatch({ type: "products_loading", payload: false });
+      }
     } catch (error) {
       console.error(error);
+    }
+  };
+  const getCategory = async () => {
+    try {
+      productDispatch({ type: "category-loading", payload: true });
+      const { data, status } = await axios({
+        method: "GET",
+        url: "/api/categories",
+      });
+      if (status === 200 || status === 201) {
+        productDispatch({ type: "get_category", payload: data });
+        productDispatch({ type: "category-loading", payload: false });
+      }
+    } catch (e) {
+      console.error(e);
     }
   };
 
   useEffect(() => {
     getData();
   }, []);
+  useEffect(() => {
+    getCategory();
+  }, []);
 
   return (
-    <CardContext.Provider value={{ state, dispatch }}>
+    <CardContext.Provider value={{ productState, productDispatch }}>
       {children}
     </CardContext.Provider>
   );
-}
+};
+
+export const useProductData = () => useContext(CardContext);
