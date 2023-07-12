@@ -1,4 +1,4 @@
-export const productCard = ({ data }) => {
+export const ProductCard = ({ data }) => {
   const { _id, img, title, rating, price } = data;
   return (
     <div>

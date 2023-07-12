@@ -6,13 +6,13 @@ export const CategoryCard = () => {
   const { productState } = useProductData();
   const { filterDispatch } = useFilter();
   const navigate = useNavigate();
-  console.log(filterDispatch);
   return (
     <div>
-      {productState?.categoryData.length !== 0 &&
+      {productState?.categoryData?.length !== 0 &&
         productState?.categoryData?.map((category) => (
           <div
             onClick={() => {
+              console.log(category);
               filterDispatch({ type: "clear_filter" });
               filterDispatch({
                 type: "FILTER_CATEGORY",

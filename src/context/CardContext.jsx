@@ -25,7 +25,7 @@ export const CardProvider = ({ children }) => {
       });
       if (status === 200 || status === 201) {
         console.log(data);
-        productDispatch({ type: "get_product", payload: data });
+        productDispatch({ type: "get_product", payload: data.products });
         productDispatch({ type: "products_loading", payload: false });
       }
     } catch (error) {
@@ -40,7 +40,7 @@ export const CardProvider = ({ children }) => {
         url: "/api/categories",
       });
       if (status === 200 || status === 201) {
-        productDispatch({ type: "get_category", payload: data });
+        productDispatch({ type: "get_category", payload: data.categories });
         productDispatch({ type: "category-loading", payload: false });
       }
     } catch (e) {
@@ -54,7 +54,6 @@ export const CardProvider = ({ children }) => {
   useEffect(() => {
     getCategory();
   }, []);
-  console.log(productState);
 
   return (
     <CardContext.Provider value={{ productState, productDispatch }}>
