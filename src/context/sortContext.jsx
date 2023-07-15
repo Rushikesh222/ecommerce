@@ -4,7 +4,6 @@ import { useProductData } from "./CardContext";
 export const filterContext = createContext();
 export const FilterProvider = ({ children }) => {
   const { productState } = useProductData();
-  // const [filteredData, setFilteredData] = useState([]);
   const initialFilter = {
     filterCategory: [],
     rating: 5,
@@ -15,9 +14,7 @@ export const FilterProvider = ({ children }) => {
     filterReducer,
     initialFilter
   );
-  console.log(filterState.rating);
-  // console.log(filterState.filterCategory);
-  // let categoryData = [];
+
   let filteredData = productState?.productData;
   console.log(filteredData.price);
 
@@ -25,8 +22,6 @@ export const FilterProvider = ({ children }) => {
     filteredData = filteredData.filter((data) =>
       filterState.filterCategory.includes(data.category)
     );
-    // setFilteredData(categoryData);
-    // console.log({ categoryData });
   }
   if (filterState.rating >= 0) {
     filteredData = filteredData.filter(
