@@ -1,5 +1,4 @@
 export const filterReducer = (state, action) => {
-  console.log(state.filterCategory);
   switch (action.type) {
     case "FILTER_RATE":
       return {
@@ -15,6 +14,7 @@ export const filterReducer = (state, action) => {
       return state.filterCategory.includes(action.payload)
         ? {
             ...state,
+            // filterCategory: action.payload,
             filterCategory: [...state.filterCategory].filter(
               (items) => items !== action.payload
             ),
@@ -23,10 +23,14 @@ export const filterReducer = (state, action) => {
             ...state,
             filterCategory: [...state.filterCategory, action.payload],
           };
+    case "SEARCH_FILTER":
+      return {
+        ...state,
+        search: action.payload,
+      };
     case "clear_filters":
       return {
         filterCategory: [],
-
         rating: 5,
         sort: "featured",
         search: "",

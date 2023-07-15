@@ -24,7 +24,6 @@ export const CardProvider = ({ children }) => {
         url: "/api/products",
       });
       if (status === 200 || status === 201) {
-        console.log(data);
         productDispatch({ type: "get_product", payload: data.products });
         productDispatch({ type: "products_loading", payload: false });
       }

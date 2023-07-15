@@ -12,7 +12,6 @@ export const CategoryCard = () => {
         productState?.categoryData?.map((category) => (
           <div
             onClick={() => {
-              console.log(category);
               filterDispatch({ type: "clear_filter" });
               filterDispatch({
                 type: "FILTER_CATEGORY",

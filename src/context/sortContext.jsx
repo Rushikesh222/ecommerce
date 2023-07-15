@@ -4,6 +4,7 @@ import { useProductData } from "./CardContext";
 export const filterContext = createContext();
 export const FilterProvider = ({ children }) => {
   const { productState } = useProductData();
+  // const [filteredData, setFilteredData] = useState([]);
   const initialFilter = {
     filterCategory: [],
     rating: 5,
@@ -14,21 +15,27 @@ export const FilterProvider = ({ children }) => {
     filterReducer,
     initialFilter
   );
+  console.log(filterState.rating);
+  // console.log(filterState.filterCategory);
+  // let categoryData = [];
+  let filteredData = productState?.productData;
+  console.log(filteredData.price);
 
-  let filteredData = productState.productData;
-  if (filterState.filterCategory.length > 0) {
-    filteredData = filteredData.filter((data) => {
-      return filterState.filterCategory.includes(data.category);
-    });
+  if (filterState?.filterCategory?.length > 0) {
+    filteredData = filteredData.filter((data) =>
+      filterState.filterCategory.includes(data.category)
+    );
+    // setFilteredData(categoryData);
+    // console.log({ categoryData });
   }
-  if (filterState.rating > 0) {
+  if (filterState.rating >= 0) {
     filteredData = filteredData.filter(
-      (data) => data.rating.value <= filterState.rating
+      (data) => data.rating <= filterState.rating
     );
   }
   if (filterState.search.length > 0) {
     filteredData = filteredData.filter((data) =>
-      data.title.toLowerCase().include(filterState.search.toLowerCase())
+      data.title.toLowerCase().includes(filterState.search.toLowerCase())
     );
   }
   if (filterState.sort === "high") {

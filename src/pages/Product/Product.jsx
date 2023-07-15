@@ -2,6 +2,7 @@ import { useProductData } from "../../context/CardContext";
 import { useFilter } from "../../context/sortContext";
 import { ProductCard } from "../../component/product-Card/productCard";
 import "./Product.css";
+import { Sidebar } from "../../component/Sidebar/Sidebar";
 
 export const Product = () => {
   const { productState } = useProductData();
@@ -9,6 +10,7 @@ export const Product = () => {
 
   return (
     <div className="Home">
+      <Sidebar />
       {productState.isProductLoading ? (
         <div>
           <h1>loading</h1>
