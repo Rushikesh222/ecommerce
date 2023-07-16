@@ -11,13 +11,13 @@ export const CartProvider = ({ children }) => {
   const getdata = async () => {
     try {
       setUpdateCartItems(true);
-      const { Data, status } = await axios({
+      const { data, status } = await axios({
         method: "GET",
         url: "/api/user/cart",
         headers: { authorization: token },
       });
       if (status === 200) {
-        setCartItems(Data);
+        setCartItems(data?.cart);
         setUpdateCartItems(false);
       }
     } catch (error) {
@@ -25,54 +25,75 @@ export const CartProvider = ({ children }) => {
     }
   };
 
-  // const handleCart = async (items) => {
-  //   try {
-  //     const requestedbody = { product: items };
-  //     const response = await fetch(`/api/user/cart`, {
-  //       method: "POST",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //         authorization: token,
-  //       },
-  //       body: JSON.stringify(requestedbody),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((addcart) => {
-  //         setAddToCartItems(addcart.cart);
-  //       });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const addCartData = async (cartData) => {
+    try {
+      setUpdateCartItems(true);
+      const { data, status } = await axios({
+        method: "POST",
+        url: "/api/user/cart",
+        headers: { authorization: token },
+        body: { cart: cartData },
+      });
+      if (status === 200) {
+        setCartItems(data?.cart);
+        setUpdateCartItems(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
-  // const removeFromCart = async (_id) => {
-  //   try {
-  //     const requestedbody = { product: _id };
-  //     const response = await fetch(`/api/user/cart/${_id}`, {
-  //       method: "DELETE",
-  //       headers: {
-  //         Accept: "application/json",
-  //         "Content-Type": "application/json",
-  //         authorization: token,
-  //       },
-  //       body: JSON.stringify(requestedbody),
-  //     })
-  //       .then((response) => response.json())
-  //       .then((addcart) => {
-  //         setAddToCartItems(addcart.cart);
-  //       });
-  //   } catch (error) {
-  //     console.error(error);
-  //   }
-  // };
+  const removeFromCart = async (_id) => {
+    try {
+      setUpdateCartItems(true);
+      const { data, status } = await axios({
+        method: "DELETE",
+        url: `/api/user/cart/${_id}`,
+        headers: { authorization: token },
+        body: { cart: _id },
+      });
+      if (status === 200) {
+        setCartItems(data?.cart);
+        setUpdateCartItems(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
+  const changeCartQuantity = async (_id, updateType) => {
+    try {
+      setUpdateCartItems(true);
+      const { data, status } = await axios({
+        method: "DELETE",
+        url: `/api/user/cart/${_id}`,
+        headers: { authorization: token },
+        body: { action: { type: updateType } },
+      });
+      if (status === 200) {
+        setCartItems(data?.cart);
+        setUpdateCartItems(false);
+      }
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     getdata();
   }, [token]);
 
   return (
-    <CartContext.Provider value={{ cartItems, setCartItems }}>
+    <CartContext.Provider
+      value={{
+        cartItems,
+        setCartItems,
+        getdata,
+        addCartData,
+        removeFromCart,
+        changeCartQuantity,
+        updateCartItems,
+      }}
+    >
       {children}
     </CartContext.Provider>
   );

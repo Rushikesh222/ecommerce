@@ -1,75 +1,86 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { AuthContext } from "./Auth";
+import axios from "axios";
 
 export const WishlistContext = createContext();
 export const WishlistProvider = ({ children }) => {
   const { token } = useContext(AuthContext);
-  const [addToWishlist, setAddToWishlist] = useState([]);
+  const [Wishlist, setWishlist] = useState([]);
+  const [updateWishlist, setUpdateWishlist] = useState(false);
 
-  const getdata = async () => {
+  const getWishlistData = async () => {
     try {
-      const response = await fetch("/api/user/wishlist", {
+      setUpdateWishlist(true);
+      const { data, status } = await axios({
         method: "GET",
+        url: "/api/user/wishlist",
         headers: {
           authorization: token,
         },
       });
-      if (response.status === 200) {
-        setAddToWishlist(response.json());
+      if (status === 200) {
+        setWishlist(data);
+        setUpdateWishlist(false);
       }
     } catch (error) {
       console.error(error);
     }
   };
-  const handleWishlist = async (items) => {
+  const addWishlistData = async (items) => {
     try {
-      const requestedbody = { product: items };
-      const response = await fetch(`/api/user/wishlist`, {
+      setUpdateWishlist(true);
+      const { data, status } = await axios(`/api/user/wishlist`, {
         method: "POST",
+        url: "api/user/wishlist",
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
           authorization: token,
         },
-        body: JSON.stringify(requestedbody),
-      })
-        .then((response) => response.json())
-        .then((wishList) => {
-          setAddToWishlist(wishList.wishlist);
-        });
+        body: { product: items },
+      });
+      if (status === 200) {
+        setWishlist(data);
+        setUpdateWishlist(false);
+      }
     } catch (error) {
       console.error(error);
     }
   };
   const removeFromWishlist = async (_id) => {
     try {
-      const requestedbody = { product: _id };
-      const response = await fetch(`/api/user/wishlist/${_id}`, {
+      setUpdateWishlist(true);
+      const { status, data } = await fetch({
         method: "DELETE",
+        url: `/api/user/wishlist/${_id}`,
         headers: {
-          Accept: "application/json",
-          "Content-Type": "application/json",
           authorization: token,
         },
-        body: JSON.stringify(requestedbody),
-      })
-        .then((response) => response.json())
-        .then((wishList) => {
-          setAddToWishlist(wishList.wishlist);
-        });
+        body: { product: _id },
+      });
+      if (status === 200) {
+        setWishlist(data);
+        setUpdateWishlist(false);
+      }
     } catch (error) {
       console.error(error);
     }
   };
   useEffect(() => {
-    getdata();
+    getWishlistData();
   }, [token]);
 
   return (
     <WishlistContext.Provider
-      value={{ handleWishlist, addToWishlist, removeFromWishlist }}
+      value={{
+        Wishlist,
+        setWishlist,
+        getWishlistData,
+        removeFromWishlist,
+        addWishlistData,
+        updateWishlist,
+      }}
     >
       {children}
     </WishlistContext.Provider>
   );
 };
+export const useWishlist = () => useContext(WishlistContext);
