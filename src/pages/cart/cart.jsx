@@ -1,8 +1,10 @@
 import { useCart } from "../../context/CartContext";
 import { CartItems } from "./CartItems";
+import { PriceCard } from "./Price";
 import { RemoveCartItem } from "./RemoveItem";
 export const Cart = () => {
-  const { cartItems, removeFromCart } = useCart();
+  const { cartItems, removeFromCart, priceDetails } = useCart();
+  console.log(priceDetails);
   const handleRemoveCart = (id) => {
     removeFromCart(id);
   };
@@ -21,18 +23,17 @@ export const Cart = () => {
           </button>
         )}
         {cartItems.length > 0 ? (
-          Cart(
-            <div className="CartItems-card">
-              <div className="CartItems-Items">
-                {cartItems.map((item) => (
-                  <CartItems
-                    data={item}
-                    handleRemoveCart={() => handleRemoveCart(item._id)}
-                  />
-                ))}
-              </div>
+          <div className="CartItems-card">
+            <div className="CartItems-Items">
+              {cartItems.map((item) => (
+                <CartItems
+                  data={item}
+                  handleRemoveCart={() => handleRemoveCart(item._id)}
+                />
+              ))}
             </div>
-          )
+            <PriceCard obj={priceDetails} />
+          </div>
         ) : (
           <RemoveCartItem />
         )}

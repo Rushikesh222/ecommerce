@@ -15,14 +15,10 @@ export const PriceCard = ({ obj }) => {
     </li> */}
         <hr />
         <li>
-          <p>Grand Total{onrejectionhandled.quantity}</p>
+          <p>Grand Total{obj.quantity}</p>
           <h4>Rs.{obj.totalPrice}</h4>
         </li>
-        <button
-        // onClick={() => navigate("/address")}
-        >
-          CheckOut Now
-        </button>
+        <button onClick={() => navigate("/address")}>CheckOut Now</button>
       </ul>
     </>
   );

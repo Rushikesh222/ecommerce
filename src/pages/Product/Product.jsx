@@ -21,7 +21,9 @@ export const Product = () => {
             <h1>no Product</h1>
           ) : (
             filteredData.map((products) => {
-              console.log(products);
+              {
+                /* console.log(products); */
+              }
               return (
                 <li>
                   <ProductCard data={products} />

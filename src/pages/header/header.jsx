@@ -8,7 +8,7 @@ export function Header() {
     <div>
       <nav>
         <NavLink to="/">Landing</NavLink>
-        <NavLink to="/product">Product</NavLink>
+        <NavLink to="/products">Product</NavLink>
         <NavLink to="/cart">Cart</NavLink>
         <NavLink to="/login">Login</NavLink>
         <NavLink to="/wishlist">WishList</NavLink>

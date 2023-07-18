@@ -9,6 +9,8 @@ import { AuthProvider } from "./context/Auth";
 import { CartProvider } from "./context/CartContext";
 import { FilterProvider } from "./context/sortContext";
 import { AddressProvider } from "./context/AddressContext";
+import { WishlistProvider } from "./context/WishlistContext";
+
 // import {
 //   WishlistContext,
 //   WishlistProvider,
@@ -24,9 +26,11 @@ ReactDOM.render(
         <CardProvider>
           <CartProvider>
             <FilterProvider>
-              <AddressProvider>
-                <App />
-              </AddressProvider>
+              <WishlistProvider>
+                <AddressProvider>
+                  <App />
+                </AddressProvider>
+              </WishlistProvider>
             </FilterProvider>
           </CartProvider>
         </CardProvider>

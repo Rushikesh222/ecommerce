@@ -38,7 +38,7 @@ export const CheckoutCard = () => {
       handler: function () {
         toast.success(`Payment of Rs. ${priceDetails.totalPrice} is Succesful`);
         navigate("/order-summary");
-        cart.map((item) => removeCartData(item._id));
+        cartItems.map((item) => removeFromCart(item._id));
         setTimeout(() => {
           console.log("Success");
           navigate("/");
@@ -65,12 +65,12 @@ export const CheckoutCard = () => {
           <strong>Quantity</strong>
         </p>
       </div>
-      {cart.map((data) => {
+      {cartItems.map((data) => {
         const { _id, title, qty } = data;
         return (
           <div key={_id}>
             <p>{title}</p>
-            <p>{Q}</p>
+            <p>{qty}</p>
           </div>
         );
       })}
@@ -106,7 +106,9 @@ export const CheckoutCard = () => {
         <p>No Adrress Found</p>
       )}
       <button
-        disabled={Object.values(checkOut)[0].length === 0 || cart.length === 0}
+        disabled={
+          Object.values(checkOut)[0].length === 0 || cartItems.length === 0
+        }
         onClick={() => {
           displayRazorpay();
         }}

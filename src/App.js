@@ -8,6 +8,7 @@ import { Landing } from "./pages/Landing/Landing";
 import { WishList } from "./pages/wishlist/Wishlist";
 import { Login } from "./pages/login/Login";
 import { Signup } from "./pages/Signup/Signup";
+import { Address } from "./pages/Address/Address";
 function App() {
   return (
     <div className="App">
@@ -19,6 +20,7 @@ function App() {
         <Route path="/cart" element={<Cart />} />
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
+        <Route path="/address" element={<Address />} />
 
         <Route path="/wishlist" element={<WishList />} />
       </Routes>

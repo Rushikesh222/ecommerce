@@ -1,5 +1,8 @@
 const cartEmptyImage =
-  "https://asset.cloudinary.com/dzicjioey/c692878453faf49f484e397be167c881";
+  "https://res.cloudinary.com/dzicjioey/image/upload/v1689576223/empty_card_jgmfiq.jpg";
 const wishlistEmptyImage =
-  "https://asset.cloudinary.com/dzicjioey/61d86cab37be0fdb881fabbf2e35ca17";
+  "https://res.cloudinary.com/dzicjioey/image/upload/v1689590477/empty_Wishlist_hstu5y.jpg";
 export { cartEmptyImage, wishlistEmptyImage };
+// useEffect(() => {
+//   window.scrollTo({ top: 0, left: 0 });
+// }, [])

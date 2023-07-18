@@ -1,12 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
-import { useWishlist } from "../../context/WishlistContext";
 import { useAuth } from "../../context/Auth";
 import { isItemPresentInWishlist } from "../../utils/isItemPresentInWishlist";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { isItemInCart } from "../../utils/isItemInCart";
-
+import { useWishlist } from "../../context/WishlistContext";
 export const ProductCard = ({ data }) => {
   const { token } = useAuth();
   const navigate = useNavigate();
@@ -15,6 +14,7 @@ export const ProductCard = ({ data }) => {
   const { _id, img, title, rating, price } = data;
   const { Wishlist, removeFromWishlist, addWishlistData, updateWishlist } =
     useWishlist();
+  // const { Wishlist, addWishlistData } = useWishlist();
   const addToWishlist = () => {
     if (token) {
       if (!isItemPresentInWishlist(Wishlist, _id)) {
@@ -28,10 +28,11 @@ export const ProductCard = ({ data }) => {
   };
   return (
     <div>
-      <span class="material-symbols-outlined">favorite</span>
-      <span onClick={addToWishlist} class="material-symbols-outlined">
+      {/* <span class="material-symbols-outlined">favorite</span> */}
+      {/* <span onClick={addToWishlist} class="material-symbols-outlined">
         favorite
-      </span>
+      </span> */}
+      <i class="fa-solid fa-heart"></i>
       <div className="product" key={_id}>
         <img src={img} alt="name" />
         <h2>Title:{title}</h2>

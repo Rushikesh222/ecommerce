@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => {
     { quantity: 0, totalPrice: 0 }
   );
 
-  const getdata = async () => {
+  const getCartData = async () => {
     try {
       setUpdateCartItems(true);
       const { data, status } = await axios({
@@ -35,13 +35,13 @@ export const CartProvider = ({ children }) => {
   const addCartData = async (cartData) => {
     try {
       setUpdateCartItems(true);
-      const { data, status } = await axios({
-        method: "POST",
-        url: "/api/user/cart",
-        headers: { authorization: token },
-        body: { cart: cartData },
-      });
-      if (status === 200) {
+      const { data, status } = await axios.post(
+        "/api/user/cart",
+        { product: cartData },
+        { headers: { authorization: token } }
+      );
+      if (status === 200 || status === 201) {
+        console.log(data);
         setCartItems(data?.cart);
         setUpdateCartItems(false);
       }
@@ -86,7 +86,7 @@ export const CartProvider = ({ children }) => {
   };
 
   useEffect(() => {
-    getdata();
+    getCartData();
   }, [token]);
 
   return (
@@ -95,7 +95,7 @@ export const CartProvider = ({ children }) => {
         cartItems,
         priceDetails,
         setCartItems,
-        getdata,
+        getCartData,
         addCartData,
         removeFromCart,
         changeCartQuantity,

@@ -19,7 +19,7 @@ export const WishlistProvider = ({ children }) => {
         },
       });
       if (status === 200) {
-        setWishlist(data);
+        setWishlist(data?.wishlist);
         setUpdateWishlist(false);
       }
     } catch (error) {
@@ -27,18 +27,17 @@ export const WishlistProvider = ({ children }) => {
     }
   };
   const addWishlistData = async (items) => {
+    console.log(items);
     try {
       setUpdateWishlist(true);
-      const { data, status } = await axios(`/api/user/wishlist`, {
-        method: "POST",
-        url: "api/user/wishlist",
-        headers: {
-          authorization: token,
-        },
-        body: { product: items },
-      });
-      if (status === 200) {
-        setWishlist(data);
+      const { data, status } = await axios.post(
+        "/api/user/wishlist",
+        { product: items },
+        { headers: { authorization: token } }
+      );
+      console.log(data);
+      if (status === 200 || status === 201) {
+        setWishlist(data?.wishlist);
         setUpdateWishlist(false);
       }
     } catch (error) {
@@ -57,7 +56,7 @@ export const WishlistProvider = ({ children }) => {
         body: { product: _id },
       });
       if (status === 200) {
-        setWishlist(data);
+        setWishlist(data?.wishlist);
         setUpdateWishlist(false);
       }
     } catch (error) {

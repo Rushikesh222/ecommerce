@@ -1,8 +1,9 @@
 // import { useContext } from "react";
 // import { WishlistContext } from "../../component/context/WishlistContext";
 
-export const WishlistCard = (data, handleRemoveWishlist) => {
+export const WishlistCard = ({ data, handleRemoveWishlist }) => {
   //   const { addToWishlist, removeFromWishlist } = useContext(WishlistContext);
+
   const { _id, img, title, rating, price } = data;
   return (
     <div className="Wishlist">
