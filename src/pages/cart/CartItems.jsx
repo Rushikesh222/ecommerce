@@ -2,10 +2,10 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/Auth";
 import { useCart } from "../../context/CartContext";
 import { useWishlist } from "../../context/WishlistContext";
-import { isItemPresentInWishlist } from "../../utils/isItemPresentINWishlist";
+import { isItemPresentInWishlist } from "../../utils/isItemPresentInWishlist";
 
 export function CartItems({ data, handleRemoveCart }) {
-  const { _id, img, title, rating, qty, price } = data;
+  const { _id, img, title, rating, qty } = data;
   const { changeCartQuantity, updateCartItems } = useCart();
   const { token } = useAuth();
   const { Wishlist, addWishlistData, updateWishlist } = useWishlist();

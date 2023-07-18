@@ -7,6 +7,13 @@ export const CartProvider = ({ children }) => {
   const { token } = useContext(AuthContext);
   const [cartItems, setCartItems] = useState([]);
   const [updateCartItems, setUpdateCartItems] = useState(false);
+  const priceDetails = cartItems.reduce(
+    (acc, curr) => ({
+      quantity: acc.quantity + Number(curr.qty),
+      totalPrice: acc.totalPrice + Number(curr.price) * Number(curr.qty),
+    }),
+    { quantity: 0, totalPrice: 0 }
+  );
 
   const getdata = async () => {
     try {
@@ -86,6 +93,7 @@ export const CartProvider = ({ children }) => {
     <CartContext.Provider
       value={{
         cartItems,
+        priceDetails,
         setCartItems,
         getdata,
         addCartData,

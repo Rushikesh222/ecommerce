@@ -5,10 +5,10 @@ import App from "./App";
 import { makeServer } from "./server";
 import { BrowserRouter as Router } from "react-router-dom";
 import { CardProvider } from "./context/CardContext";
-
 import { AuthProvider } from "./context/Auth";
 import { CartProvider } from "./context/CartContext";
 import { FilterProvider } from "./context/sortContext";
+import { AddressProvider } from "./context/AddressContext";
 // import {
 //   WishlistContext,
 //   WishlistProvider,
@@ -24,7 +24,9 @@ ReactDOM.render(
         <CardProvider>
           <CartProvider>
             <FilterProvider>
-              <App />
+              <AddressProvider>
+                <App />
+              </AddressProvider>
             </FilterProvider>
           </CartProvider>
         </CardProvider>

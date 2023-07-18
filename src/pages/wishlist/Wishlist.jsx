@@ -1,24 +1,30 @@
-// import { useContext } from "react";
-// import { WishlistContext } from "../../component/context/WishlistContext";
-
-// export const Wishlist = () => {
-//   const { addToWishlist, removeFromWishlist } = useContext(WishlistContext);
-
-//   return (
-//     <div className="Wishlist">
-//       <h1>Wishlist</h1>
-//       {addToWishlist?.map((items) => {
-//         const { _id, title, rating, price, img } = items;
-//         return (
-//           <div className="product" key={_id}>
-//             <img src={img} alt="name" />
-//             <h2>Title:{title}</h2>
-//             <p>rating:{rating}</p>
-//             <p>price:{price}</p>
-//             <button onClick={() => removeFromWishlist(_id)}>Remove</button>
-//           </div>
-//         );
-//       })}
-//     </div>
-//   );
-// };
+import { useWishlist } from "../../context/WishlistContext";
+import { WishlistCard } from "./WishlistCard";
+export const WishList = () => {
+  const { WishList, removeFromWishlist } = useWishlist();
+  const handleRemoveWishlist = (id) => {
+    removeFromWishlist(id);
+  };
+  return (
+    <>
+      <div className="wishlist-Card">
+        <h1>WishList</h1>
+        {WishList.length > 0 ? (
+          <div>
+            {WishList.map((items) => {
+              return (
+                <WishlistCard
+                  key={items._id}
+                  data={items}
+                  handleRemoveWishlist={handleRemoveWishlist(items._id)}
+                />
+              );
+            })}
+          </div>
+        ) : (
+          <></>
+        )}
+      </div>
+    </>
+  );
+};
