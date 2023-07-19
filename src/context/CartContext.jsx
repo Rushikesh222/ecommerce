@@ -14,7 +14,7 @@ export const CartProvider = ({ children }) => {
     }),
     { quantity: 0, totalPrice: 0 }
   );
-
+  // console.log(token);
   const getCartData = async () => {
     try {
       setUpdateCartItems(true);

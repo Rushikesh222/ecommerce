@@ -35,6 +35,7 @@ export const getAllAddressesHandler = function (schema, request) {
 
 export const addNewAddressHandler = function (schema, request) {
   const userId = requiresAuth.call(this, request);
+
   try {
     if (!userId) {
       new Response(
@@ -47,7 +48,6 @@ export const addNewAddressHandler = function (schema, request) {
     }
     const userAddresses = schema.users.findBy({ _id: userId }).address;
     const { address } = JSON.parse(request.requestBody);
-
     userAddresses.push({
       ...address,
       createdAt: formatDate(),

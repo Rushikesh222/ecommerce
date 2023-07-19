@@ -6,8 +6,8 @@ export const AddressFrom = () => {
   return (
     <div>
       <div className="adrress-form">
-        {addressData.length === 0 && <h2>address added.</h2>}
-        {addressData.map((data) => {
+        {addressData?.length === 0 && <h2>address added.</h2>}
+        {addressData?.map((data) => {
           const { _id, name, street, city, state, pincode } = data;
           return (
             <div>

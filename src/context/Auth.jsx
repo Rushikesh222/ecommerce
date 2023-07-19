@@ -7,7 +7,7 @@ export const AuthProvider = ({ children }) => {
   const location = useLocation();
   const navigate = useNavigate();
   const localStorageToken = JSON.parse(localStorage.getItem("loginDetails"));
-  const [token, setToken] = useState(localStorageToken?.token);
+  const [token, setToken] = useState([]);
   const [currentUser, setCurrentUser] = useState(localStorageToken?.user);
 
   const signupHandler = async () => {

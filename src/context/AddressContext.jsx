@@ -8,7 +8,7 @@ export const AddressProvider = ({ children }) => {
   const [addressData, setAddressData] = useState([]);
   const [isAddressCardVisiable, setIsAddressCardVisiable] = useState(false);
   const [isEditBtn, setIsEditBtn] = useState([]);
-
+  // console.log(token, "address");
   const checkoutInitial = {
     _id: "",
     name: "",
@@ -32,20 +32,19 @@ export const AddressProvider = ({ children }) => {
       console.error(error);
     }
   };
-  useEffect(() => {
-    getAddressData();
-  }, [token]);
+
   const addAddressData = async (addressData) => {
+    console.log(addressData);
     try {
       const { data, status } = await axios({
         method: "POST",
         url: "/api/user/address",
-        headers: { authorization: token },
-        body: {
+        data: {
           address: addressData,
         },
+        headers: { authorization: token },
       });
-      if (status === 200) {
+      if (status === 201) {
         setAddressData(data?.address);
       }
     } catch (error) {
@@ -78,7 +77,9 @@ export const AddressProvider = ({ children }) => {
     }
   };
   useEffect(() => {
-    getAddressData();
+    if (token) {
+      getAddressData();
+    }
   }, [token]);
 
   return (

@@ -1,5 +1,6 @@
 import { useAddress } from "../../context/AddressContext";
 import { v4 as uuid } from "uuid";
+import "./AddressCard.css";
 export const AddressCard = () => {
   const {
     addressData,
@@ -13,8 +14,9 @@ export const AddressCard = () => {
     isEditBtn,
     setIsEditBtn,
   } = useAddress();
+
   const handleAddAddress = () => {
-    const addressExist = addressData.find(
+    const addressExist = addressData?.find(
       (address) => address._id === checkOut._id
     );
     if (addressExist) {
@@ -50,12 +52,11 @@ export const AddressCard = () => {
         className="address-card"
         style={{ display: isAddressCardVisiable ? "" : "none" }}
       >
-        <span
-          class="material-symbols-outlined"
-          onClick={setIsAddressCardVisiable(false)}
-        >
-          close
-        </span>
+        <i
+          onClick={() => setIsAddressCardVisiable(false)}
+          class="fa-solid fa-xmark"
+        ></i>
+
         <h1>Enter Your Address</h1>
         <label className="name">Name:</label>
         <input
