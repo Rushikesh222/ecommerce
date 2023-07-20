@@ -1,11 +1,11 @@
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/Auth";
-import { isItemPresentInWishlist } from "../../utils/isItemPresentInWishlist";
 import { toast } from "react-hot-toast";
 import { useState } from "react";
 import { isItemInCart } from "../../utils/isItemInCart";
 import { useWishlist } from "../../context/WishlistContext";
+import { isItemPresentInWishlist } from "../../utils/isItemsIsPresentInWishlist";
 export const ProductCard = ({ data }) => {
   const { token } = useAuth();
   const navigate = useNavigate();

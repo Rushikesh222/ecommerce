@@ -56,6 +56,12 @@ export const AuthProvider = ({ children }) => {
       toast.error("User does not exist! Please sign up.");
     }
   };
+  const handleUserLogout = () => {
+    localStorage.removeItem("data");
+    setToken(null);
+    setCurrentUser(null);
+    toast.success("Logged Out!");
+  };
 
   useEffect(() => {
     signupHandler();
@@ -63,7 +69,13 @@ export const AuthProvider = ({ children }) => {
 
   return (
     <AuthContext.Provider
-      value={{ signupHandler, token, currentUser, loginHandler }}
+      value={{
+        signupHandler,
+        handleUserLogout,
+        token,
+        currentUser,
+        loginHandler,
+      }}
     >
       {children}
     </AuthContext.Provider>

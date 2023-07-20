@@ -9,6 +9,10 @@ import { WishList } from "./pages/wishlist/Wishlist";
 import { Login } from "./pages/login/Login";
 import { Signup } from "./pages/Signup/Signup";
 import { Address } from "./pages/Address/Address";
+import { ProductDetails } from "./pages/ProductDetails/ProductDetails";
+import { RequireAuth } from "./component/Auth/RequireAuth";
+import { OrderSummary } from "./pages/Summary/OrderSummary";
+
 function App() {
   return (
     <div className="App">
@@ -17,12 +21,17 @@ function App() {
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/" element={<Landing />} />
         <Route path="/products" element={<Product />} />
-        <Route path="/cart" element={<Cart />} />
+        <Route path="/product/:userId" element={<ProductDetails />} />
+
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-        <Route path="/address" element={<Address />} />
 
-        <Route path="/wishlist" element={<WishList />} />
+        <Route element={<RequireAuth />}>
+          <Route path="/cart" element={<Cart />} />
+          <Route path="/wishlist" element={<WishList />} />
+          <Route path="/order-summary" element={<OrderSummary />} />
+          <Route path="/address" element={<Address />} />
+        </Route>
       </Routes>
     </div>
   );

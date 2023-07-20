@@ -2,7 +2,7 @@ import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/Auth";
 import { useCart } from "../../context/CartContext";
 import { useWishlist } from "../../context/WishlistContext";
-import { isItemPresentInWishlist } from "../../utils/isItemPresentInWishlist";
+import { isItemPresentInWishlist } from "../../utils/isItemsIsPresentInWishlist";
 
 export function CartItems({ data, handleRemoveCart }) {
   const { _id, img, title, rating, qty } = data;
