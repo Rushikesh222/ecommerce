@@ -34,7 +34,7 @@ export const ProductCard = ({ data }) => {
       </span> */}
       <i class="fa-solid fa-heart"></i>
       <div className="product" key={_id}>
-        <img src={img} alt="name" />
+        <img className="product-image" src={img} alt="name" />
         <h2>Title:{title}</h2>
         <p>rating:{rating}</p>
         <p>price:{price}</p>

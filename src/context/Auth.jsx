@@ -25,6 +25,9 @@ export const AuthProvider = ({ children }) => {
         );
         setToken(encodedToken);
         setCurrentUser(createdUser);
+        navigate(location?.state?.from?.pathname || "/products", {
+          replace: true,
+        });
       }
     } catch (error) {
       console.error(error);
@@ -49,7 +52,9 @@ export const AuthProvider = ({ children }) => {
         toast.success(`Welcome back, ${foundUser.firstName}!`, {
           icon: "👋",
         });
-        navigate(location?.state?.from?.pathname || "/", { replace: true });
+        navigate(location?.state?.from?.pathname || "/products", {
+          replace: true,
+        });
       }
     } catch (error) {
       console.error(error);

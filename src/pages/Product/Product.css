@@ -1,6 +1,6 @@
-img {
-  width: 200px;
-  height: 200px;
+.product-image {
+  width: 100px;
+  height: 100px;
 }
 .product {
   display: inline-block;

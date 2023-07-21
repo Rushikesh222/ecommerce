@@ -12,6 +12,8 @@ import { Address } from "./pages/Address/Address";
 import { ProductDetails } from "./pages/ProductDetails/ProductDetails";
 import { RequireAuth } from "./component/Auth/RequireAuth";
 import { OrderSummary } from "./pages/Summary/OrderSummary";
+import { Profile } from "./pages/Profile/Profile";
+import { AddressDetails } from "./pages/Profile/AddressDetails";
 
 function App() {
   return (
@@ -28,6 +30,8 @@ function App() {
 
         <Route element={<RequireAuth />}>
           <Route path="/cart" element={<Cart />} />
+          <Route path="/profile" element={<Profile />} />
+          <Route path="/address-details" element={<AddressDetails />} />
           <Route path="/wishlist" element={<WishList />} />
           <Route path="/order-summary" element={<OrderSummary />} />
           <Route path="/address" element={<Address />} />
