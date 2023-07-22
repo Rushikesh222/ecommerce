@@ -1,26 +1,31 @@
 import { NavLink } from "react-router-dom";
 import { useFilter } from "../../context/sortContext";
 import { logo } from "../../assets";
+import { useCart } from "../../context/CartContext";
 import "./Header.css";
+import { useAuth } from "../../context/Auth";
+import { useWishlist } from "../../context/WishlistContext";
 
 export function Header() {
   const { filterDispatch } = useFilter();
+  const { token } = useAuth();
+  const { cartItems } = useCart();
+  const { Wishlist } = useWishlist();
 
   return (
     <div className="header-container">
-      <div className="logo">
-        <img className="logo-image" src={logo} />
-      </div>
       <div className="Navbar">
-        <nav>
-          <NavLink to="/">Landing</NavLink>
-          <NavLink to="/products">Product</NavLink>
-          <NavLink to="/cart">Cart</NavLink>
-          <NavLink to="/login">Login</NavLink>
-          <NavLink to="/wishlist">WishList</NavLink>
+        <img className="logo-image" src={logo} alt="logo" />
+        <nav className="nav-container">
+          <div className="two-nav">
+            <NavLink to="/">Home</NavLink>
+            <NavLink to="/products">Product</NavLink>
+          </div>
+
           <div className="Search-bar">
             <span class="material-symbols-outlined">search</span>
             <input
+              className="search-box-input"
               placeholder="Search"
               onChange={(e) =>
                 filterDispatch({
@@ -29,6 +34,21 @@ export function Header() {
                 })
               }
             />
+          </div>
+          <div className="items-icon">
+            <NavLink to="/cart">
+              <i class="fa-solid fa-cart-shopping"></i>
+              <p className="items-size">{token ? cartItems.length : "0"}</p>
+            </NavLink>
+            <NavLink to="/wishlist">
+              <i class="fa-solid fa-heart"></i>
+              <p className="items-size-first">
+                {token ? Wishlist.length : "0"}
+              </p>
+            </NavLink>
+            <NavLink to="/profile">
+              <i class="fa-regular fa-user"></i>
+            </NavLink>
           </div>
         </nav>
       </div>

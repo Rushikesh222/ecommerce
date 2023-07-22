@@ -6,6 +6,7 @@ import { useState } from "react";
 import { isItemInCart } from "../../utils/isItemInCart";
 import { useWishlist } from "../../context/WishlistContext";
 import { isItemPresentInWishlist } from "../../utils/isItemsIsPresentInWishlist";
+import "./Productitems.css";
 export const ProductCard = ({ data }) => {
   const { token } = useAuth();
   const navigate = useNavigate();
@@ -14,7 +15,6 @@ export const ProductCard = ({ data }) => {
   const { _id, img, title, rating, price } = data;
   const { Wishlist, removeFromWishlist, addWishlistData, updateWishlist } =
     useWishlist();
-  // const { Wishlist, addWishlistData } = useWishlist();
   const addToWishlist = () => {
     if (token) {
       if (!isItemPresentInWishlist(Wishlist, _id)) {
@@ -27,36 +27,39 @@ export const ProductCard = ({ data }) => {
     }
   };
   return (
-    <div>
-      {/* <span class="material-symbols-outlined">favorite</span> */}
-      {/* <span onClick={addToWishlist} class="material-symbols-outlined">
-        favorite
-      </span> */}
-      <i class="fa-solid fa-heart"></i>
+    <div className="product-card">
+      {changeWishlist ? (
+        <i onClick={() => removeFromWishlist} class="fa-solid fa-heart"></i>
+      ) : (
+        <i onClick={addToWishlist} class="fa-regular fa-heart"></i>
+      )}
+      <i onClick={addToWishlist} class="fa-solid fa-heart"></i>
       <div className="product" key={_id}>
         <img className="product-image" src={img} alt="name" />
-        <h2>Title:{title}</h2>
-        <p>rating:{rating}</p>
-        <p>price:{price}</p>
-        <button
-          disabled={updateCartItems}
-          onClick={() => {
-            if (token) {
-              if (isItemInCart(cartItems, _id)) {
-                navigate("/cart");
+        <div className="product-content">
+          <h4>{title}</h4>
+          <p>rating:{rating}</p>
+          <p>price:{price}</p>
+          <button
+            disabled={updateCartItems}
+            onClick={() => {
+              if (token) {
+                if (isItemInCart(cartItems, _id)) {
+                  navigate("/cart");
+                } else {
+                  addCartData(data);
+                  toast.success("Added to cart!");
+                }
               } else {
-                addCartData(data);
-                toast.success("Added to cart!");
+                toast.warning("Please login to proceed!");
+                navigate("/login");
               }
-            } else {
-              toast.warning("Please login to proceed!");
-              navigate("/login");
-            }
-          }}
-        >
-          <i class="fa-solid fa-cart-shopping"></i>{" "}
-          {isItemInCart(cartItems, _id) ? "Go to Cart" : "Add to Cart"}
-        </button>
+            }}
+          >
+            <i class="fa-solid fa-cart-shopping"></i>{" "}
+            {isItemInCart(cartItems, _id) ? "Go to Cart" : "Add to Cart"}
+          </button>
+        </div>
       </div>
     </div>
   );

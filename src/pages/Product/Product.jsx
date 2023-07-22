@@ -12,22 +12,17 @@ export const Product = () => {
     <div className="Home">
       <Sidebar />
       {productState.isProductLoading ? (
-        <div>
-          <h1>loading</h1>
-        </div>
+        <h1>loading</h1>
       ) : (
-        <div>
+        <div className="product-display">
           {filteredData.length === 0 ? (
             <h1>no Product</h1>
           ) : (
             filteredData.map((products) => {
-              {
-                /* console.log(products); */
-              }
               return (
-                <li>
+                <div>
                   <ProductCard data={products} />
-                </li>
+                </div>
               );
             })
           )}

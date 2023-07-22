@@ -1,15 +1,16 @@
 import { useProductData } from "../../context/CardContext";
 import { useFilter } from "../../context/sortContext";
-
+import "./Sidebar.css";
 export const Sidebar = () => {
   const { productState } = useProductData();
   const { filterState, filterDispatch } = useFilter();
 
   return (
-    <div>
-      <div>
-        <h1>Filter</h1>
+    <div className="filter-card">
+      <div className="clear-filter">
+        <h3>Filter</h3>
         <button
+          className="clear-button"
           onClick={() => {
             filterDispatch({
               type: "clear_filters",
@@ -19,8 +20,8 @@ export const Sidebar = () => {
           Clear Filter
         </button>
       </div>
-      <div className="filterContainer">
-        <h1>Category</h1>
+      <div className="filter-category">
+        <h2>Category</h2>
         <div className="Category-filter">
           {productState?.categoryData.map(({ categoryName }) => (
             <div key={categoryName}>
@@ -44,7 +45,7 @@ export const Sidebar = () => {
           <h4>Rating</h4>
           <input
             type="range"
-            className="sidebar"
+            className="sidebar-range"
             min="0"
             max="5"
             value={filterState.rating}
