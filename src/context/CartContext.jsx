@@ -11,8 +11,9 @@ export const CartProvider = ({ children }) => {
     (acc, curr) => ({
       quantity: acc.quantity + Number(curr.qty),
       totalPrice: acc.totalPrice + Number(curr.price) * Number(curr.qty),
+      discount: Number(curr.discount) - acc.totalPrice,
     }),
-    { quantity: 0, totalPrice: 0 }
+    { quantity: 0, totalPrice: 0, discount: 0 }
   );
   // console.log(token);
   const getCartData = async () => {

@@ -47,15 +47,12 @@ export const WishlistProvider = ({ children }) => {
   const removeFromWishlist = async (_id) => {
     try {
       setUpdateWishlist(true);
-      const { status, data } = await fetch({
+      const { status, data } = await axios({
         method: "DELETE",
         url: `/api/user/wishlist/${_id}`,
-        headers: {
-          authorization: token,
-        },
-        body: { product: _id },
+        headers: { authorization: token },
       });
-      if (status === 200) {
+      if (status === 200 || status === 201) {
         setWishlist(data?.wishlist);
         setUpdateWishlist(false);
       }

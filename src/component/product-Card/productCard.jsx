@@ -1,16 +1,14 @@
 import { useNavigate } from "react-router-dom";
 import { useCart } from "../../context/CartContext";
 import { useAuth } from "../../context/Auth";
-import { toast } from "react-hot-toast";
-import { useState } from "react";
 import { isItemInCart } from "../../utils/isItemInCart";
 import { useWishlist } from "../../context/WishlistContext";
 import { isItemPresentInWishlist } from "../../utils/isItemsIsPresentInWishlist";
 import "./Productitems.css";
+import { toast } from "react-toastify";
 export const ProductCard = ({ data }) => {
   const { token } = useAuth();
   const navigate = useNavigate();
-  const { changeWishlist, setChangeWishlist } = useState(false);
   const { cartItems, addCartData, updateCartItems } = useCart();
   const { _id, img, title, rating, price } = data;
   const { Wishlist, removeFromWishlist, addWishlistData, updateWishlist } =
@@ -28,37 +26,58 @@ export const ProductCard = ({ data }) => {
   };
   return (
     <div className="product-card">
-      {changeWishlist ? (
-        <i onClick={() => removeFromWishlist} class="fa-solid fa-heart"></i>
-      ) : (
-        <i onClick={addToWishlist} class="fa-regular fa-heart"></i>
-      )}
-      <i onClick={addToWishlist} class="fa-solid fa-heart"></i>
+      <div className="wishlist-icon">
+        {isItemPresentInWishlist(Wishlist, _id) ? (
+          <i
+            onClick={() => {
+              removeFromWishlist(_id);
+              toast.warning("Item removed from wishlist!");
+            }}
+            style={{ color: "#ff0000" }}
+            class="fa-solid fa-heart add-wishlist"
+          ></i>
+        ) : (
+          <i
+            onClick={addToWishlist}
+            disabled={updateWishlist}
+            class="fa-regular fa-heart"
+          ></i>
+        )}
+      </div>
+
       <div className="product" key={_id}>
         <img className="product-image" src={img} alt="name" />
         <div className="product-content">
           <h4>{title}</h4>
-          <p>rating:{rating}</p>
-          <p>price:{price}</p>
-          <button
-            disabled={updateCartItems}
-            onClick={() => {
-              if (token) {
-                if (isItemInCart(cartItems, _id)) {
-                  navigate("/cart");
+          <p>
+            rating:{rating}
+            <i class="fa-solid fa-star"></i>
+          </p>
+          <p>
+            price:{price} <i class="fa-sharp fa-solid fa-indian-rupee-sign"></i>
+          </p>
+          <div className="cart-button">
+            <button
+              className="add-cart-button"
+              disabled={updateCartItems}
+              onClick={() => {
+                if (token) {
+                  if (isItemInCart(cartItems, _id)) {
+                    navigate("/cart");
+                  } else {
+                    addCartData(data);
+                    toast.success("Added to cart!");
+                  }
                 } else {
-                  addCartData(data);
-                  toast.success("Added to cart!");
+                  toast.warning("Please login to proceed!");
+                  navigate("/login");
                 }
-              } else {
-                toast.warning("Please login to proceed!");
-                navigate("/login");
-              }
-            }}
-          >
-            <i class="fa-solid fa-cart-shopping"></i>{" "}
-            {isItemInCart(cartItems, _id) ? "Go to Cart" : "Add to Cart"}
-          </button>
+              }}
+            >
+              <i class="fa-solid fa-cart-shopping"></i>{" "}
+              {isItemInCart(cartItems, _id) ? "Go to Cart" : "Add to Cart"}
+            </button>
+          </div>
         </div>
       </div>
     </div>

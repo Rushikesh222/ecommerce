@@ -1,3 +1,3 @@
 export const isItemPresentInWishlist = (data, id) => {
-  return data.find((items) => (items.id === id ? true : false));
+  return data.find((items) => (items._id === id ? true : false));
 };

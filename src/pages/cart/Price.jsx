@@ -1,25 +1,31 @@
 import { useNavigate } from "react-router-dom";
 
 export const PriceCard = ({ obj }) => {
+  console.log(obj);
   const navigate = useNavigate();
   return (
-    <>
-      <ul>
+    <div className="price-block">
+      <ul className="price-detials">
         <li>
-          <p>SubTotal{obj.quantity}</p>
-          <h4>Rs:{obj.quantity}</h4>
+          <p>SubTotal({obj.quantity}):</p>
+          <h4>Rs:{obj.totalPrice}</h4>
         </li>
-        {/* <li>
-        <p>Discount</p>
-        <h1>-Rs.{obj.discount-obj.totalPrice}</h1>
-    </li> */}
+        <li>
+          <p>Discount:</p>
+          <h4>Rs.{obj.discount}</h4>
+        </li>
         <hr />
         <li>
-          <p>Grand Total{obj.quantity}</p>
-          <h4>Rs.{obj.totalPrice}</h4>
+          <p>Grand Total({obj.quantity}):</p>
+          <h4>Rs.{obj.totalPrice - obj.discount}</h4>
         </li>
-        <button onClick={() => navigate("/address")}>CheckOut Now</button>
+        <button
+          className="checkout-button"
+          onClick={() => navigate("/address")}
+        >
+          CheckOut Now
+        </button>
       </ul>
-    </>
+    </div>
   );
 };

@@ -2,16 +2,16 @@ import { useCart } from "../../context/CartContext";
 import { CartItems } from "./CartItems";
 import { PriceCard } from "./Price";
 import { RemoveCartItem } from "./RemoveItem";
+import "./Cart.css";
 export const Cart = () => {
   const { cartItems, removeFromCart, priceDetails } = useCart();
-  console.log(priceDetails);
   const handleRemoveCart = (id) => {
     removeFromCart(id);
   };
   return (
-    <div>
+    <div className="cart-block">
       <div className="Cart">
-        <h1>Cart{cartItems.length > 0 && <span>{cartItems.length}</span>}</h1>
+        <h1>Cart{cartItems.length > 0 && <span>({cartItems.length})</span>}</h1>
         {cartItems.length > 0 && (
           <button
             className="clear_cart"

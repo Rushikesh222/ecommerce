@@ -3,11 +3,13 @@ import { cartEmptyImage } from "../../assets";
 export const RemoveCartItem = () => {
   const navigate = useNavigate();
   return (
-    <div className="card-Image">
-      <img src={cartEmptyImage} alt="cart" />
+    <div className="card-empty">
+      <img className="card-Image-empty" src={cartEmptyImage} alt="cart" />
       <h3>Your Cart is Empty!</h3>
       <p>Add something to make me happy :)</p>
-      <button onClick={() => navigate(`/products`)}>Shop Now</button>
+      <button className="cart-btn" onClick={() => navigate(`/products`)}>
+        Shop Now
+      </button>
     </div>
   );
 };

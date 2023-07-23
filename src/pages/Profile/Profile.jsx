@@ -1,19 +1,20 @@
 import { NavLink, useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/Auth";
 import { toast } from "react-toastify";
+import "./Profile.css";
 
 export const Profile = () => {
   const { handleUserLogout, currentUser } = useAuth();
   const Navigate = useNavigate();
   const getStyle = ({ isActive }) => ({
-    color: isActive ? "var(--primary-color)" : "black",
-    borderBottom: isActive ? "1px solid var(--primary-color)" : "none",
+    color: isActive ? "rgb(1, 1, 83)" : "black",
+    borderBottom: isActive ? "1px solid rgb(1, 1, 83)" : "none",
   });
   return (
-    <div>
-      <h1>Account</h1>
-      <div className="Profile-card">
-        <div className="link">
+    <div className="profile-block">
+      <div className="profile-card">
+        <h1>Account</h1>
+        <div className="link-profile">
           <NavLink style={getStyle} to="/profile">
             Profile
           </NavLink>
@@ -22,15 +23,16 @@ export const Profile = () => {
           </NavLink>
         </div>
         <hr />
-        <div>
+        <div className="profile-name">
           <strong>Name:</strong>
           <span>{`${currentUser?.firstName}${currentUser?.lastName}`}</span>
         </div>
-        <div>
+        <div className="profile-email">
           <strong>Email:</strong>
           <span>{`${currentUser?.email}`}</span>
         </div>
         <button
+          className="logout"
           onClick={() => {
             handleUserLogout();
             Navigate("/");
