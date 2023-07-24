@@ -72,10 +72,10 @@ export const CartProvider = ({ children }) => {
     try {
       setUpdateCartItems(true);
       const { data, status } = await axios({
-        method: "DELETE",
+        method: "POST",
         url: `/api/user/cart/${_id}`,
         headers: { authorization: token },
-        body: { action: { type: updateType } },
+        data: { action: { type: updateType } },
       });
       if (status === 200) {
         setCartItems(data?.cart);

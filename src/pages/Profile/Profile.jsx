@@ -10,6 +10,7 @@ export const Profile = () => {
     color: isActive ? "rgb(1, 1, 83)" : "black",
     borderBottom: isActive ? "1px solid rgb(1, 1, 83)" : "none",
   });
+  console.log(currentUser);
   return (
     <div className="profile-block">
       <div className="profile-card">

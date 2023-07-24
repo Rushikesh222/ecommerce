@@ -1,7 +1,7 @@
 import { createContext, useContext, useEffect, useState } from "react";
 import { loginService, signupService } from "../services/AuthService";
 import { useLocation, useNavigate } from "react-router-dom";
-import { toast } from "react-hot-toast";
+import { toast } from "react-toastify";
 export const AuthContext = createContext();
 export const AuthProvider = ({ children }) => {
   const location = useLocation();
@@ -62,15 +62,11 @@ export const AuthProvider = ({ children }) => {
     }
   };
   const handleUserLogout = () => {
-    localStorage.removeItem("data");
-    setToken(null);
+    localStorage.removeItem("loginDetails");
+    setToken("");
     setCurrentUser(null);
     toast.success("Logged Out!");
   };
-
-  useEffect(() => {
-    signupHandler();
-  }, []);
 
   return (
     <AuthContext.Provider

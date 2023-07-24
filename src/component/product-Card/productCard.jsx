@@ -13,13 +13,14 @@ export const ProductCard = ({ data }) => {
   const { _id, img, title, rating, price } = data;
   const { Wishlist, removeFromWishlist, addWishlistData, updateWishlist } =
     useWishlist();
+  console.log(token);
   const addToWishlist = () => {
     if (token) {
       if (!isItemPresentInWishlist(Wishlist, _id)) {
         addWishlistData(data);
         toast.success("Add to Wishlist");
       } else {
-        toast.warning("Add to Wishlist");
+        toast.warning("You Have to Login");
         navigate("/login");
       }
     }
@@ -83,7 +84,7 @@ export const ProductCard = ({ data }) => {
               }
             }}
           >
-            <i class="fa-solid fa-cart-shopping"></i>{" "}
+            <i class="fa-solid fa-cart-shopping"></i>
             {isItemInCart(cartItems, _id) ? "Go to Cart" : "Add to Cart"}
           </button>
         </div>

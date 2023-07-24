@@ -14,11 +14,13 @@ import { RequireAuth } from "./component/Auth/RequireAuth";
 import { OrderSummary } from "./pages/Summary/OrderSummary";
 import { Profile } from "./pages/Profile/Profile";
 import { AddressDetails } from "./pages/Profile/AddressDetails";
-
+import { ToastContainer } from "react-toastify";
+import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
     <div className="App">
       <Header />
+      <ToastContainer position="bottom-right" autoClose={2000} />
       <Routes>
         <Route path="/mockman" element={<Mockman />} />
         <Route path="/" element={<Landing />} />
