@@ -5,15 +5,15 @@ import { toast } from "react-toastify";
 
 const loadScript = (url) => {
   return new Promise((resolve, reject) => {
-    const srcipt = document.createElement("srcipt");
-    srcipt.src = url;
-    srcipt.onload = () => {
+    const script = document.createElement("script");
+    script.src = url;
+    script.onload = () => {
       resolve(true);
     };
-    srcipt.onerror = () => {
+    script.onerror = () => {
       resolve(false);
     };
-    document.body.appendChild(srcipt);
+    document.body.appendChild(script);
   });
 };
 export const CheckoutCard = () => {
@@ -25,15 +25,17 @@ export const CheckoutCard = () => {
     const response = await loadScript(
       "https://checkout.razorpay.com/v1/checkout.js"
     );
+    console.log(response);
     if (!response) {
       alert("Razorpay SDK failed to load, check you internet connection");
+      return;
     }
 
     const options = {
       key: "rzp_test_SJd4C2Kvq5UZIu",
       amount: Number(priceDetails.totalPrice) * 100,
       currency: "INR",
-      name: "ATTIRE",
+      name: "PERFUMA",
       description: "Thank you for shopping with us",
       handler: function () {
         toast.success(`Payment of Rs. ${priceDetails.totalPrice} is Succesful`);
@@ -45,7 +47,7 @@ export const CheckoutCard = () => {
         }, 4000);
       },
       theme: {
-        color: "#e80071",
+        color: " rgb(1, 1, 83)",
       },
     };
 
@@ -110,9 +112,9 @@ export const CheckoutCard = () => {
       )}
       <button
         className="place-order-btn"
-        disabled={
-          Object.values(checkOut)[0].length === 0 || cartItems.length === 0
-        }
+        // disabled={
+        //   Object.values(checkOut)[0].length === 0 || cartItems.length === 0
+        // }
         onClick={() => {
           displayRazorpay();
         }}
