@@ -41,9 +41,13 @@ export const ProductDetails = () => {
   return (
     <div className="details-block">
       <div className="details-link">
-        <p onClick={() => navigate("/")}>Home</p>
+        <p onClick={() => navigate("/")} style={{ cursor: "pointer" }}>
+          Home
+        </p>
         <i class="fa-solid fa-angle-right"></i>
-        <p onClick={() => navigate("/products")}>Browse Product</p>
+        <p onClick={() => navigate("/products")} style={{ cursor: "pointer" }}>
+          Browse Product
+        </p>
         <i class="fa-solid fa-angle-right"></i>
         <span>Product Details</span>
       </div>
@@ -60,7 +64,6 @@ export const ProductDetails = () => {
               <div className="wishlist-card">
                 <button
                   className="cart-btn"
-                  disabled={updateWishlist}
                   onClick={() => {
                     if (token) {
                       if (isItemPresentInWishlist(Wishlist, _id)) {
@@ -81,7 +84,6 @@ export const ProductDetails = () => {
                 </button>
                 <button
                   className="cart-btn"
-                  disabled={isItemInCart}
                   onClick={() => {
                     if (token) {
                       if (isItemInCart(cartItems, _id)) {

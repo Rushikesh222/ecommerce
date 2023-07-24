@@ -12,7 +12,7 @@ export const Signup = () => {
   });
   const createAccount = (e) => {
     e.preventDefault();
-    signupHandler({ userSignupDetails });
+    signupHandler(userSignupDetails);
   };
   return (
     <div className="signup-from">

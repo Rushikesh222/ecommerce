@@ -9,11 +9,13 @@
   position: sticky;
   background-color: #fff;
   top: 0;
+  z-index: 20;
 }
 .logo-image {
   width: 150px;
   height: 98px;
   margin-left: 80px;
+  cursor: pointer;
 }
 .Navbar {
   display: flex;

@@ -36,7 +36,7 @@ export const ProductCard = ({ data }) => {
               toast.warning("Item removed from wishlist!");
             }}
             style={{ color: "#ff0000" }}
-            class="fa-solid fa-heart add-wishlist"
+            class="fa-solid fa-heart "
           ></i>
         ) : (
           <i onClick={addToWishlist} class="fa-regular fa-heart"></i>

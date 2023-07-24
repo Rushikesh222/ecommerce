@@ -1,4 +1,4 @@
-import { NavLink } from "react-router-dom";
+import { NavLink, useNavigate } from "react-router-dom";
 import { useFilter } from "../../context/sortContext";
 import { logo } from "../../assets";
 import { useCart } from "../../context/CartContext";
@@ -11,11 +11,17 @@ export function Header() {
   const { token } = useAuth();
   const { cartItems } = useCart();
   const { Wishlist } = useWishlist();
+  const navigate = useNavigate();
 
   return (
     <div className="header-container">
       <div className="Navbar">
-        <img className="logo-image" src={logo} alt="logo" />
+        <img
+          className="logo-image"
+          onClick={() => navigate("/")}
+          src={logo}
+          alt="logo"
+        />
         <nav className="nav-container">
           <div className="two-nav">
             <NavLink to="/">Home</NavLink>
@@ -27,12 +33,13 @@ export function Header() {
             <input
               className="search-box-input"
               placeholder="Search"
-              onChange={(e) =>
+              onChange={(e) => {
                 filterDispatch({
                   type: "SEARCH_FILTER",
                   payload: e.target.value,
-                })
-              }
+                });
+                navigate("/products");
+              }}
             />
           </div>
           <div className="items-icon">

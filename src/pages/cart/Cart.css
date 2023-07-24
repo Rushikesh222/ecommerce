@@ -105,6 +105,7 @@
   color: blue;
   font-size: 20px;
   font-weight: 500;
+  cursor: pointer;
 }
 .remove-cart:hover {
   font-size: 25px;
@@ -208,4 +209,8 @@ hr {
 .card-Image-empty {
   width: 500px;
   height: 300px;
+}
+.Select-Quantity button {
+  border: none;
+  background-color: transparent;
 }

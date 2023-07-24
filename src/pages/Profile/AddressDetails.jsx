@@ -50,6 +50,7 @@ export const AddressDetails = () => {
           {addressData.length === 0 && <h2>No Address</h2>}
           {addressData.map((data) => {
             const { name, _id, street, city, state, pincode } = data;
+            console.log(data);
             return (
               <div className="show-address-card">
                 <p>{name}</p>

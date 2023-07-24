@@ -1,5 +1,5 @@
 .filter-card {
-  top: 0;
+  top: 200px;
   position: sticky;
   display: flex;
   flex-direction: column;

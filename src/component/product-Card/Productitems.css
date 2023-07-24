@@ -6,6 +6,7 @@
   height: 350px;
   border: 1px solid gray;
   border-radius: 25px;
+  z-index: -1;
 }
 .product {
   display: flex;

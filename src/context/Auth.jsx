@@ -10,10 +10,10 @@ export const AuthProvider = ({ children }) => {
   const [token, setToken] = useState(localStorageToken?.token || "");
   const [currentUser, setCurrentUser] = useState(localStorageToken?.user);
 
-  const signupHandler = async () => {
+  const signupHandler = async (userData) => {
     try {
-      const response = await signupService();
-
+      const response = await signupService(userData);
+      console.log(response);
       const {
         status,
         data: { createdUser, encodedToken },
@@ -28,6 +28,7 @@ export const AuthProvider = ({ children }) => {
         navigate(location?.state?.from?.pathname || "/", {
           replace: true,
         });
+        console.log(status);
       }
     } catch (error) {
       console.error(error);
