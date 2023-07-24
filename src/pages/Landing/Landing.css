@@ -12,3 +12,66 @@
   height: 600px;
   border-radius: 25px;
 }
+footer {
+  background-color: #aaaaaa;
+  margin-bottom: 0;
+  padding: 0 70px;
+  padding-bottom: 2px;
+  font-size: 12px;
+  color: black;
+}
+
+footer .footer-div {
+  display: flex;
+  justify-content: space-around;
+  align-items: center;
+}
+
+.footer-div .logo-footer {
+  width: 200px;
+  text-align: left;
+}
+
+.footer-div .logo-footer img {
+  width: 60px;
+  background-color: white;
+  padding: 7px 15px;
+  border-radius: 30%;
+  margin-left: 50px;
+}
+
+.footer-div .contacts {
+  display: flex;
+  justify-content: left;
+  width: 250px;
+  justify-content: space-between;
+}
+
+.footer-div .contacts .companies {
+  text-align: left;
+  cursor: pointer;
+}
+
+.footer-div .contacts .socials {
+  display: flex;
+  flex-direction: column;
+}
+
+.footer-div a {
+  margin: 5px 10px;
+  text-decoration: none;
+  color: black;
+}
+
+.footer-div a:hover {
+  color: rgb(53, 53, 53);
+  transform: scale(1.2);
+}
+.logo-footer p {
+  color: black;
+}
+
+footer p {
+  text-align: center;
+  color: black;
+}

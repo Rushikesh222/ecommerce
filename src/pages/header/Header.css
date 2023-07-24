@@ -6,6 +6,9 @@
   height: 100px;
   align-content: space-between;
   font-size: 20px;
+  position: sticky;
+  background-color: #fff;
+  top: 0;
 }
 .logo-image {
   width: 150px;
