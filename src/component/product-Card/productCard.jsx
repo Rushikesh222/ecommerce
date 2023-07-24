@@ -46,8 +46,16 @@ export const ProductCard = ({ data }) => {
       </div>
 
       <div className="product" key={_id}>
-        <img className="product-image" src={img} alt="name" />
-        <div className="product-content">
+        <img
+          onClick={() => navigate(`/product/${_id}`)}
+          className="product-image"
+          src={img}
+          alt="name"
+        />
+        <div
+          onClick={() => navigate(`/product/${_id}`)}
+          className="product-content"
+        >
           <h4>{title}</h4>
           <p>
             rating:{rating}
@@ -56,28 +64,28 @@ export const ProductCard = ({ data }) => {
           <p>
             price:{price} <i class="fa-sharp fa-solid fa-indian-rupee-sign"></i>
           </p>
-          <div className="cart-button">
-            <button
-              className="add-cart-button"
-              disabled={updateCartItems}
-              onClick={() => {
-                if (token) {
-                  if (isItemInCart(cartItems, _id)) {
-                    navigate("/cart");
-                  } else {
-                    addCartData(data);
-                    toast.success("Added to cart!");
-                  }
+        </div>
+        <div className="cart-button">
+          <button
+            className="add-cart-button"
+            disabled={updateCartItems}
+            onClick={() => {
+              if (token) {
+                if (isItemInCart(cartItems, _id)) {
+                  navigate("/cart");
                 } else {
-                  toast.warning("Please login to proceed!");
-                  navigate("/login");
+                  addCartData(data);
+                  toast.success("Added to cart!");
                 }
-              }}
-            >
-              <i class="fa-solid fa-cart-shopping"></i>{" "}
-              {isItemInCart(cartItems, _id) ? "Go to Cart" : "Add to Cart"}
-            </button>
-          </div>
+              } else {
+                toast.warning("Please login to proceed!");
+                navigate("/login");
+              }
+            }}
+          >
+            <i class="fa-solid fa-cart-shopping"></i>{" "}
+            {isItemInCart(cartItems, _id) ? "Go to Cart" : "Add to Cart"}
+          </button>
         </div>
       </div>
     </div>

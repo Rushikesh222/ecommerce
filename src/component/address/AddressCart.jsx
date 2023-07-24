@@ -58,35 +58,35 @@ export const AddressCard = () => {
         ></i>
 
         <h1>Enter Your Address</h1>
-        <label className="name">Name:</label>
+        <label className="name">Name</label>
         <input
           className="name-input"
           value={checkOut.name}
           onChange={(e) => setCheckOut({ ...checkOut, name: e.target.value })}
           required
         />
-        <label className="street">Street:</label>
+        <label className="street">Street</label>
         <input
           className="street-input"
           value={checkOut.street}
           onChange={(e) => setCheckOut({ ...checkOut, street: e.target.value })}
           required
         />
-        <label className="city">City:</label>
+        <label className="city">City</label>
         <input
           className="city-input"
           value={checkOut.city}
           onChange={(e) => setCheckOut({ ...checkOut, city: e.target.value })}
           required
         />
-        <label className="state">State:</label>
+        <label className="state">State</label>
         <input
           className="state-input"
           value={checkOut.state}
           onChange={(e) => setCheckOut({ ...checkOut, state: e.target.value })}
           required
         />
-        <label className="pincode">Pincode:</label>
+        <label className="pincode">Pincode</label>
         <input
           className="pincode-input"
           value={checkOut.pincode}
@@ -95,9 +95,11 @@ export const AddressCard = () => {
           }
           required
         />
-        <button onClick={handleAddAddress}>
-          {isEditBtn ? "Save Button" : "Add Address"}
-        </button>
+        <div className="address-btn-block">
+          <button className="add-address" onClick={handleAddAddress}>
+            {isEditBtn ? "Save Button" : "Add Address"}
+          </button>
+        </div>
       </div>
     </>
   );

@@ -5,16 +5,17 @@ export const AddressFrom = () => {
     useAddress();
   return (
     <div>
-      <div className="adrress-form">
+      <div className="address-form">
+        <h3 className="select-address">Select Address</h3>
         {addressData?.length === 0 && <h2>address added.</h2>}
         {addressData?.map((data) => {
           const { _id, name, street, city, state, pincode } = data;
           return (
-            <div>
+            <div className="address-details-cart">
               <input
                 type="radio"
                 className="address"
-                checkOut={checkOut._id === _id}
+                checked={checkOut._id === _id}
                 onChange={() => setCheckOut(data)}
               />
               <div className="address-data">
@@ -24,13 +25,14 @@ export const AddressFrom = () => {
                   <p>
                     {city},{state}
                   </p>
-                  <p>{pincode}</p>
+                  <p>Pincode:{pincode}</p>
                 </div>
               </div>
             </div>
           );
         })}
         <button
+          className="add-address-btn"
           onClick={() => {
             setIsAddressCardVisiable(true);
             setCheckOut({

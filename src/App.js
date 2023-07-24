@@ -24,10 +24,8 @@ function App() {
         <Route path="/" element={<Landing />} />
         <Route path="/products" element={<Product />} />
         <Route path="/product/:userId" element={<ProductDetails />} />
-
         <Route path="/login" element={<Login />} />
         <Route path="/signup" element={<Signup />} />
-
         <Route element={<RequireAuth />}>
           <Route path="/cart" element={<Cart />} />
           <Route path="/profile" element={<Profile />} />

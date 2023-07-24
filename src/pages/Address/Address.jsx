@@ -3,21 +3,22 @@ import { useAddress } from "../../context/AddressContext";
 import { AddressCard } from "../../component/address/AddressCart";
 import { AddressFrom } from "./AddressForm";
 import { CheckoutCard } from "./CheckoutCard";
+import "./Address.css";
 export const Address = () => {
   const navigate = useNavigate();
   const { isAddressCardVisiable } = useAddress();
   return (
-    <div>
-      <p>
+    <div className="addres-block">
+      <p className="address-location">
         <p onClick={() => navigate("/cart")}>Cart</p>
-        <span class="material-symbols-outlined">chevron_right</span>
+        <i class="fa-solid fa-angle-right"></i>
         <span onClick={() => navigate("/address")}>Address</span>
       </p>
+      <AddressFrom />
       <div
         className="address-checkout"
         style={{ filter: isAddressCardVisiable ? "blur(10px)" : "" }}
       >
-        <AddressFrom />
         <CheckoutCard />
       </div>
       <AddressCard />

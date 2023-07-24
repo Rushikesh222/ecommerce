@@ -6,20 +6,20 @@ import { useAuth } from "../../context/Auth";
 import { isItemInCart } from "../../utils/isItemInCart";
 import { useWishlist } from "../../context/WishlistContext";
 import { useProductData } from "../../context/CardContext";
-import axios from "axios";
 import { LoaderIcon } from "react-hot-toast";
 import { toast } from "react-toastify";
 import { isItemPresentInWishlist } from "../../utils/isItemsIsPresentInWishlist";
+import "./ProductDetails.css";
 
 export const ProductDetails = () => {
-  const { singleProduct, setSingleProduct } = useState({});
+  const [singleProduct, setSingleProduct] = useState({});
   const { userId } = useParams();
   const { productState, productDispatch } = useProductData();
   const { cartItems, addCartData, updateCartItems } = useCart();
   const { Wishlist, addWishlistData, updateWishlist } = useWishlist();
   const navigate = useNavigate();
   const { token } = useAuth();
-
+  console.log(userId);
   const getSingleProduct = async () => {
     try {
       productDispatch({ type: "products_loading", payload: true });
@@ -30,6 +30,7 @@ export const ProductDetails = () => {
       console.error(e);
     }
   };
+
   useEffect(() => {
     getSingleProduct();
   }, []);
@@ -38,67 +39,67 @@ export const ProductDetails = () => {
   }
   const { _id, img, title, rating, price } = singleProduct;
   return (
-    <div>
-      <p>
-        {" "}
+    <div className="details-block">
+      <div className="details-link">
         <p onClick={() => navigate("/")}>Home</p>
         <i class="fa-solid fa-angle-right"></i>
         <p onClick={() => navigate("/products")}>Browse Product</p>
         <i class="fa-solid fa-angle-right"></i>
-        <span>Product Delaits</span>
-      </p>
+        <span>Product Details</span>
+      </div>
       {productState?.isDetailLoading ? (
         <LoaderIcon />
       ) : (
         <div className="product-details">
-          <img src={img} alt={_id} />
-          <p>{title}</p>
-          <hr />
-          <p>{rating.value}⭐</p>
-          <div className="price-card">
-            <h4>{price}</h4>
-            <div className="wishlist-card">
-              <button
-                className="wishlist-btn"
-                disabled={updateWishlist}
-                onClick={() => {
-                  if (token) {
-                    if (isItemPresentInWishlist(Wishlist, _id)) {
-                      navigate("/wishlist");
+          <img className="product-details-image" src={img} alt={_id} />
+          <div className="detials-items-list">
+            <h3>{title}</h3>
+            <p>{rating}⭐</p>
+            <p>Price:{price}</p>
+            <div className="price-card">
+              <div className="wishlist-card">
+                <button
+                  className="cart-btn"
+                  disabled={updateWishlist}
+                  onClick={() => {
+                    if (token) {
+                      if (isItemPresentInWishlist(Wishlist, _id)) {
+                        navigate("/wishlist");
+                      } else {
+                        addWishlistData(singleProduct);
+                        toast.success("Added to wishlist");
+                      }
                     } else {
-                      addWishlistData(singleProduct);
-                      toast.success("Added to wishlist");
+                      toast.warning("please login to proceed");
+                      navigate("/login");
                     }
-                  } else {
-                    toast.warning("please login to proceed");
-                    navigate("/login");
-                  }
-                }}
-              >
-                {isItemPresentInWishlist(Wishlist, _id)
-                  ? "Go to Wishlist"
-                  : "Add to Wishlist"}
-              </button>
-              <button
-                className="cart-btn"
-                disabled={isItemInCart}
-                onClick={() => {
-                  if (token) {
-                    if (isItemInCart(cartItems, _id)) {
-                      navigate("/cart");
+                  }}
+                >
+                  {isItemPresentInWishlist(Wishlist, _id)
+                    ? "Go to Wishlist"
+                    : "Add to Wishlist"}
+                </button>
+                <button
+                  className="cart-btn"
+                  disabled={isItemInCart}
+                  onClick={() => {
+                    if (token) {
+                      if (isItemInCart(cartItems, _id)) {
+                        navigate("/cart");
+                      } else {
+                        addCartData(singleProduct);
+                        toast.success("Added to cart!");
+                      }
                     } else {
-                      addCartData(singleProduct);
-                      toast.success("Added to cart!");
+                      toast.warning("Please login to proceed");
+                      navigate("/login");
                     }
-                  } else {
-                    toast.warning("Please login to proceed");
-                    navigate("/login");
-                  }
-                }}
-              >
-                <i class="fa-solid fa-cart-shopping"></i>{" "}
-                {isItemInCart(cartItems, _id) ? "Go to Cart" : "Add to Cart"}
-              </button>
+                  }}
+                >
+                  <i class="fa-solid fa-cart-shopping"></i>{" "}
+                  {isItemInCart(cartItems, _id) ? "Go to Cart" : "Add to Cart"}
+                </button>
+              </div>
             </div>
           </div>
         </div>

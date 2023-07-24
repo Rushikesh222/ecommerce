@@ -54,43 +54,46 @@ export const CheckoutCard = () => {
   };
 
   return (
-    <div>
+    <div className="checkout-block">
       <h4>Order Details</h4>
-      <hr />
-      <div>
-        <p>
-          <strong>item</strong>
-        </p>
-        <p>
-          <strong>Quantity</strong>
-        </p>
+      <div className="check-border">
+        <div className="check-items">
+          <p>
+            <strong>item</strong>
+          </p>
+          <p>
+            <strong>Quantity</strong>
+          </p>
+        </div>
+        {cartItems.map((data) => {
+          const { _id, title, qty } = data;
+          return (
+            <div className="items-details" key={_id}>
+              <p>{title}</p>
+              <p>{qty}</p>
+            </div>
+          );
+        })}
       </div>
-      {cartItems.map((data) => {
-        const { _id, title, qty } = data;
-        return (
-          <div key={_id}>
-            <p>{title}</p>
-            <p>{qty}</p>
-          </div>
-        );
-      })}
-      <hr />
-      <div className="checkout-price">
-        <h4>Price Details</h4>
-        <p>{priceDetails.quantity}</p>
+      <div className="check-border-price">
+        <div className="checkout-price">
+          <h4>Price Details</h4>
+          <p>{priceDetails.quantity}</p>
+        </div>
       </div>
-      <hr />
-      <ul>
-        <li>
-          <p>Grand Total</p>
-          <h4>Rs.{priceDetails.totalPrice}</h4>
+      <div className="check-border-price">
+        <li className="checkout-price">
+          <strong>Grand Total</strong>
+          <p>Rs.{priceDetails.totalPrice}</p>
         </li>
-      </ul>
-      <hr />
-      <h4>Deliver to</h4>
-      <hr />
+      </div>
+
+      <div className="checkout-order">
+        <h4>Deliver to</h4>
+      </div>
+
       {Object.values(checkOut)[0].length > 0 ? (
-        <div>
+        <div className="address-details">
           <p>
             <strong>{checkOut.name}</strong>
           </p>
@@ -99,13 +102,14 @@ export const CheckoutCard = () => {
             <p>
               {checkOut.city},{checkOut.state}
             </p>
-            <p>{checkOut.pincode}</p>
+            <p>Pincode: {checkOut.pincode}</p>
           </div>
         </div>
       ) : (
         <p>No Adrress Found</p>
       )}
       <button
+        className="place-order-btn"
         disabled={
           Object.values(checkOut)[0].length === 0 || cartItems.length === 0
         }
