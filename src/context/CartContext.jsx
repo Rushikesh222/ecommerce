@@ -15,7 +15,7 @@ export const CartProvider = ({ children }) => {
     }),
     { quantity: 0, totalPrice: 0, discount: 0 }
   );
-  // console.log(token);
+
   const getCartData = async () => {
     try {
       setUpdateCartItems(true);
@@ -24,6 +24,7 @@ export const CartProvider = ({ children }) => {
         url: "/api/user/cart",
         headers: { authorization: token },
       });
+      console.log(status, "data");
       if (status === 200) {
         setCartItems(data?.cart);
         setUpdateCartItems(false);
@@ -41,6 +42,7 @@ export const CartProvider = ({ children }) => {
         { product: cartData },
         { headers: { authorization: token } }
       );
+      console.log(status, "add");
       if (status === 200 || status === 201) {
         console.log(data);
         setCartItems(data?.cart);
@@ -60,6 +62,7 @@ export const CartProvider = ({ children }) => {
         headers: { authorization: token },
         body: { cart: _id },
       });
+      console.log(status, "remove");
       if (status === 200) {
         setCartItems(data?.cart);
         setUpdateCartItems(false);
@@ -77,6 +80,7 @@ export const CartProvider = ({ children }) => {
         headers: { authorization: token },
         data: { action: { type: updateType } },
       });
+      console.log(status, "update");
       if (status === 200) {
         setCartItems(data?.cart);
         setUpdateCartItems(false);

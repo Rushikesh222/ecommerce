@@ -12,47 +12,50 @@ export function CartItems({ data, handleRemoveCart }) {
   const navigate = useNavigate();
   return (
     <div className="Cart-items">
-      <div className="product-cart" key={_id}>
-        <img
-          className="cart-image"
-          src={img}
-          alt={title}
-          onClick={() => navigate(`/products/${_id}`)}
-        />
-        <div className="cart-items-list">
-          <h4>{title}</h4>
-          <p>
-            rating:{rating} <i class="fa-solid fa-star"></i>
-          </p>
-          <p>
-            {price}
-            <i class="fa-sharp fa-solid fa-indian-rupee-sign"></i>
+      <div className="cart-modal">
+        <div className="product-cart" key={_id}>
+          <img
+            className="cart-image"
+            src={img}
+            alt={title}
+            onClick={() => navigate(`/products/${_id}`)}
+          />
+          <div className="cart-items-list">
+            <h4>{title}</h4>
+            <p>
+              rating:{rating} <i class="fa-solid fa-star"></i>
+            </p>
+            <p>
+              {price}
+              <i class="fa-sharp fa-solid fa-indian-rupee-sign"></i>
+            </p>
+          </div>
+        </div>
+        <div className="Cart-Qauntity">
+          <div className="Select-Quantity">
+            <i
+              disabled={qty <= 1 || updateCartItems}
+              onClick={() => changeCartQuantity(_id, "decrement")}
+              class="fa-solid fa-minus"
+            ></i>
+
+            {qty}
+
+            <i
+              onClick={() => changeCartQuantity(_id, "increment")}
+              class="fa-solid fa-plus qty-icon"
+            ></i>
+          </div>
+          <p
+            className="remove-cart"
+            disabled={updateCartItems}
+            onClick={() => handleRemoveCart(_id)}
+          >
+            <i class="fa-solid fa-trash-can"></i> Remove
           </p>
         </div>
       </div>
-      <div className="Cart-Qauntity">
-        <div className="Select-Quantity">
-          <i
-            disabled={qty <= 1 || updateCartItems}
-            onClick={() => changeCartQuantity(_id, "decrement")}
-            class="fa-solid fa-minus"
-          ></i>
 
-          {qty}
-
-          <i
-            onClick={() => changeCartQuantity(_id, "increment")}
-            class="fa-solid fa-plus qty-icon"
-          ></i>
-        </div>
-        <p
-          className="remove-cart"
-          disabled={updateCartItems}
-          onClick={() => handleRemoveCart(_id)}
-        >
-          <i class="fa-solid fa-trash-can"></i> Remove
-        </p>
-      </div>
       <div className="price-Card">
         <h3>
           Rs.{price} <i class="fa-sharp fa-solid fa-indian-rupee-sign"></i>

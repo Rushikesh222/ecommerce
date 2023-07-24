@@ -64,6 +64,19 @@ export const Sidebar = () => {
             <option value="4"></option>
             <option value="5"></option>
           </datalist>
+          <div
+            style={{
+              display: "flex",
+              justifyContent: "space-between",
+              padding: "0  5px",
+            }}
+          >
+            <span>1</span>
+            <span>2</span>
+            <span>3</span>
+            <span>4</span>
+            <span>5</span>
+          </div>
         </div>
         <div className="filter-Price">
           <h4>Sort by Price</h4>
