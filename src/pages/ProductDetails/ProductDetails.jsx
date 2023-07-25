@@ -37,7 +37,7 @@ export const ProductDetails = () => {
   if (Object.keys(singleProduct).length === 0) {
     return null;
   }
-  const { _id, img, title, rating, price } = singleProduct;
+  const { _id, img, title, rating, price, discount } = singleProduct;
   return (
     <div className="details-block">
       <div className="details-link">
@@ -59,7 +59,8 @@ export const ProductDetails = () => {
           <div className="detials-items-list">
             <h3>{title}</h3>
             <p>{rating}⭐</p>
-            <p>Price:{price}</p>
+            <p>Price:{price}₹</p>
+            <p>Discount:-{discount}₹</p>
             <div className="price-card">
               <div className="wishlist-card">
                 <button
