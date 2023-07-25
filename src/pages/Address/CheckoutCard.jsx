@@ -122,7 +122,8 @@ export const CheckoutCard = () => {
         //   Object.values(checkOut)[0].length === 0 || cartItems.length === 0
         // }
         onClick={() => {
-          displayRazorpay();
+          // displayRazorpay();
+          navigate("/order-summary");
         }}
       >
         Place Order
