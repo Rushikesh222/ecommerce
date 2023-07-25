@@ -69,7 +69,7 @@ export const AddressProvider = ({ children }) => {
     try {
       const response = await EditAddressService(addressInput, addressId, token);
       const { data, status } = response;
-      if (status === 200) {
+      if (status === 201) {
         setAddressData(data?.address);
       }
     } catch (error) {

@@ -6,7 +6,8 @@ export const EditAddressService = async (address, addressId, endocedToken) =>
     { address: address },
     {
       headers: {
-        autorization: endocedToken,
+        authorization: endocedToken,
       },
     }
   );
+// console.log(endocedToken);
