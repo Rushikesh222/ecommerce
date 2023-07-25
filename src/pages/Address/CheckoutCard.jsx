@@ -85,8 +85,14 @@ export const CheckoutCard = () => {
       </div>
       <div className="check-border-price">
         <li className="checkout-price">
+          <strong>Discount</strong>
+          <p>Rs.{priceDetails.discount}</p>
+        </li>
+      </div>
+      <div className="check-border-price">
+        <li className="checkout-price">
           <strong>Grand Total</strong>
-          <p>Rs.{priceDetails.totalPrice}</p>
+          <p>Rs.{priceDetails.totalPrice - priceDetails.discount}</p>
         </li>
       </div>
 
