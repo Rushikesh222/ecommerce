@@ -2,7 +2,8 @@
 
 [Perfuma](https://perfumago.netlify.app/) - An E-Commerce website for Perfume.
 
-https://github.com/pranita09/plantique-v1/assets/66015794/6a76a911-71ff-4ef2-b3ec-d64482a99f89
+https://github.com/Rushikesh222/ecommerce/assets/90494892/92208628-cb8a-4b42-ab55-3371ca657d2a
+
 
 
 ## How to install and run locally?
