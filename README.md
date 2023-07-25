@@ -1,6 +1,6 @@
 # Perfuma Store
 
-[Perfuma](https://perfumago.netlify.app/) - An E-Commerce website for Perfume.
+[Perfuma](https://perfumago.netlify.app/) - An E-Commerce website for Perfumes.
 
 https://github.com/Rushikesh222/ecommerce/assets/90494892/92208628-cb8a-4b42-ab55-3371ca657d2a
 
