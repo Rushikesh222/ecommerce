@@ -10,7 +10,7 @@ import { CartProvider } from "./context/CartContext";
 import { FilterProvider } from "./context/sortContext";
 import { AddressProvider } from "./context/AddressContext";
 import { WishlistProvider } from "./context/WishlistContext";
-
+import ScrollToTop from "./component/Scrolltop";
 // import {
 //   WishlistContext,
 //   WishlistProvider,
@@ -22,6 +22,7 @@ makeServer();
 ReactDOM.render(
   <React.StrictMode>
     <Router>
+      <ScrollToTop />
       <AuthProvider>
         <CardProvider>
           <CartProvider>

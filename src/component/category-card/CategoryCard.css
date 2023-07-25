@@ -26,6 +26,7 @@
   border-radius: 35px;
   border: 1px solid #bfbfbf;
   box-shadow: 5px 5px 5px #aaaaaa;
+  cursor: pointer;
 }
 .category-frames:hover {
   width: 320px;

@@ -9,7 +9,6 @@ export function Landing() {
   const navigate = useNavigate();
   return (
     <>
-      {" "}
       <div className="Cart">
         <div className="image-card">
           <img className="bg-image" src={backgroundImage} alt="bg" />
@@ -37,21 +36,21 @@ export function Landing() {
             <div className="socials">
               <h3>CONTACTS: </h3>
               <a
-                href="https://github.com/sweta1308"
+                href="https://github.com/Rushikesh222"
                 target="_blank"
                 rel="noreferrer"
               >
                 <i class="fa-brands fa-github fa-lg"></i> Github
               </a>
               <a
-                href="https://twitter.com/AgarwallaSweta"
+                href="https://twitter.com/Rushike82547286"
                 target="_blank"
                 rel="noreferrer"
               >
                 <i class="fa-brands fa-twitter fa-lg"></i> Twitter
               </a>
               <a
-                href="https://www.linkedin.com/in/sweta-agarwalla-45aa2324a/"
+                href="https://www.linkedin.com/in/rushikesh-shirsat-42459a229/"
                 target="_blank"
                 rel="noreferrer"
               >
