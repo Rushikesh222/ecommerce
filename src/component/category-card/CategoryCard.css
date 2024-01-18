@@ -2,6 +2,7 @@
 
 .category-card {
   display: flex;
+  flex-wrap: wrap;
   flex-direction: row;
   align-items: center;
   justify-content: center;
@@ -38,4 +39,17 @@
 .category-image:hover {
   width: 270px;
   height: 230px;
+}
+@media screen and (max-width: 991px) {
+  .category-frames {
+    width: 50%;
+  }
+}
+@media screen and (max-width: 476px) {
+  .category-frames {
+    width: 50%;
+  }
+  .category-image {
+    width: 80%;
+  }
 }

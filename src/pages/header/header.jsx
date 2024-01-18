@@ -23,11 +23,6 @@ export function Header() {
           alt="logo"
         />
         <nav className="nav-container">
-          <div className="two-nav">
-            <NavLink to="/">Home</NavLink>
-            <NavLink to="/products">Product</NavLink>
-          </div>
-
           <div className="Search-bar">
             <span class="material-symbols-outlined">search</span>
             <input

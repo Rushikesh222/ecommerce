@@ -10,6 +10,9 @@ export const Product = () => {
 
   return (
     <div className="Home">
+      <div className="filter-toggle filter">
+        <i class="fa-solid fa-filter"></i>
+      </div>
       <Sidebar />
       {productState.isProductLoading ? (
         <h1>loading</h1>

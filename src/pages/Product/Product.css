@@ -7,3 +7,15 @@
   flex-wrap: wrap;
   margin: 25px;
 }
+.filter-toggle {
+  display: none;
+}
+@media screen and (max-width: 476px) {
+  .filter-toggle {
+    display: block;
+    font-weight: 900;
+  }
+  .product-display {
+    justify-content: space-around;
+  }
+}

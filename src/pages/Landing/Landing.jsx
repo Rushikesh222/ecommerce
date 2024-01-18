@@ -34,7 +34,7 @@ export function Landing() {
             </div>
 
             <div className="socials">
-              <h3>CONTACTS: </h3>
+              <h3>CONTACTS </h3>
               <a
                 href="https://github.com/Rushikesh222"
                 target="_blank"

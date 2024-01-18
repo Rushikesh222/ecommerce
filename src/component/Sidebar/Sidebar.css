@@ -1,14 +1,16 @@
 .filter-card {
-  top: 200px;
-  position: sticky;
+  bottom: 25px;
+  top: 70px;
+  position: relative;
   display: flex;
   flex-direction: column;
   border: 2px solid gray;
   width: 250px;
   height: 100%;
+  margin-bottom: -61px;
   border-radius: 25px;
-  margin-top: 25px;
   margin-left: 50px;
+  color: rgb(1, 1, 83);
   color: rgb(1, 1, 83);
   font-family: "Alfa Slab One", cursive;
   font-family: "Josefin Sans", sans-serif;
@@ -57,4 +59,9 @@
   justify-content: flex-start;
   margin: 5px;
   padding: 10px;
+}
+@media screen and (max-width: 476px) {
+  .filter-card {
+    display: none;
+  }
 }
