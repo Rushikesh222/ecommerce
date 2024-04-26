@@ -1,5 +1,5 @@
 import { v4 as uuid } from "uuid";
-
+import { url1, url2 } from "../../assets/index";
 /**
  * Product Database can be added here.
  * You can add products of your wish with different attributes
@@ -80,7 +80,7 @@ export const products = [
   {
     _id: uuid(),
     title: "John Phillips Wild Craft",
-    img: "https://cdn.shopify.com/s/files/1/0572/5555/9307/products/Wild-Craft-_-Smog_1120x.jpg?v=1681893250",
+    img: `${url1}`,
     rating: 3.8,
     price: "1224",
     category: "Oriental, Woody",
@@ -115,7 +115,7 @@ export const products = [
   {
     _id: uuid(),
     title: "Wild Stone Night Rider ",
-    img: "https://cdn.shopify.com/s/files/1/0651/3315/0443/products/NIGHT_RIDER_SPICE_PERFUME_30ML.jpg?v=1657972892",
+    img: `${url2}`,
     rating: 3.5,
     price: "197",
     category: "Oriental Fruity",
