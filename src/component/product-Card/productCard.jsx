@@ -4,7 +4,6 @@ import { useAuth } from "../../context/Auth";
 import { isItemInCart } from "../../utils/isItemInCart";
 import { useWishlist } from "../../context/WishlistContext";
 import { isItemPresentInWishlist } from "../../utils/isItemsIsPresentInWishlist";
-import "./Productitems.css";
 import { toast } from "react-toastify";
 export const ProductCard = ({ data }) => {
   const { token } = useAuth();
@@ -27,45 +26,45 @@ export const ProductCard = ({ data }) => {
     }
   };
   return (
-    <div className="product-card">
-      <div className="wishlist-icon">
+    <div className="relative m-3 flex min-h-[340px] w-full max-w-[280px] flex-col overflow-hidden rounded-3xl border border-gray-500 transition-transform duration-500 hover:scale-[1.03] hover:shadow-[0_5px_15px_rgba(0,0,0,0.15)] sm:max-w-[250px]">
+      <div className="absolute right-4 top-3 z-10 text-xl">
         {isItemPresentInWishlist(Wishlist, _id) ? (
           <i
             onClick={() => {
               removeFromWishlist(_id);
               toast.warning("Item removed from wishlist!");
             }}
-            style={{ color: "#ff0000" }}
-            class="fa-solid fa-heart "
+            className="fa-solid fa-heart text-red-600"
           ></i>
         ) : (
-          <i onClick={addToWishlist} class="fa-regular fa-heart"></i>
+          <i onClick={addToWishlist} className="fa-regular fa-heart"></i>
         )}
       </div>
 
-      <div className="product" key={_id}>
+      <div className="flex h-auto w-full flex-col items-center justify-center px-2.5 pb-3 pt-8">
         <img
           onClick={() => navigate(`/product/${_id}`)}
-          className="product-image"
+          className="h-[175px] w-[min(180px,75%)] cursor-pointer object-contain"
           src={img}
           alt="name"
         />
         <div
           onClick={() => navigate(`/product/${_id}`)}
-          className="product-content"
+          className="m-2.5 flex cursor-pointer flex-col items-center justify-center p-1 capitalize"
         >
-          <h4>{title}</h4>
-          <p>
+          <h4 className="text-center text-brand">{title}</h4>
+          <p className="m-1 text-gray-500">
             rating:{rating}
-            <i class="fa-solid fa-star"></i>
+            <i className="fa-solid fa-star"></i>
           </p>
-          <p>
-            price:{price} <i class="fa-sharp fa-solid fa-indian-rupee-sign"></i>
+          <p className="m-1 text-gray-500">
+            price:{price}{" "}
+            <i className="fa-sharp fa-solid fa-indian-rupee-sign"></i>
           </p>
         </div>
-        <div className="cart-button">
+        <div className="m-1 flex items-center justify-center p-1">
           <button
-            className="add-cart-button"
+            className="btn-brand"
             onClick={() => {
               if (token) {
                 if (isItemInCart(cartItems, _id)) {
@@ -80,7 +79,7 @@ export const ProductCard = ({ data }) => {
               }
             }}
           >
-            <i class="fa-solid fa-cart-shopping"></i>
+            <i className="fa-solid fa-cart-shopping"></i>
             {isItemInCart(cartItems, _id) ? "Go to Cart" : "Add to Cart"}
           </button>
         </div>

@@ -1,7 +1,6 @@
 import { useState } from "react";
 import { NavLink } from "react-router-dom";
 import { useAuth } from "../../context/Auth";
-import "./login.css";
 
 export const Login = () => {
   const [userLoginDetails, setUserLoginDetails] = useState({
@@ -20,13 +19,14 @@ export const Login = () => {
   };
 
   return (
-    <div className="login-page">
-      <h2>Login</h2>
+    <div className="mx-auto my-6 flex w-[min(350px,calc(100%-2rem))] flex-col items-center justify-center border border-[#bfbfbf] px-5 py-8 shadow-[5px_5px_5px_#aaaaaa]">
+      <h2 className="mb-2 text-2xl font-semibold">Login</h2>
 
-      <form className="" onSubmit={handleSubmit}>
-        <div className="login-from">
+      <form className="w-full" onSubmit={handleSubmit}>
+        <div className="flex w-full flex-col items-start">
           <label>Email:</label>
           <input
+            className="field-input mt-1"
             type="text"
             placeholder="example@gmail.com"
             onChange={(e) =>
@@ -37,9 +37,9 @@ export const Login = () => {
             }
           />
 
-          <br />
-          <label>Password:</label>
+          <label className="mt-4">Password:</label>
           <input
+            className="field-input mt-1"
             type="password"
             placeholder="**********"
             onChange={(e) =>
@@ -51,13 +51,12 @@ export const Login = () => {
           />
         </div>
 
-        <br />
-        <div className="login-form-button">
-          <button className="login-button" type="submit">
+        <div className="mt-4 flex flex-col items-center gap-2">
+          <button className="btn-brand" type="submit">
             Login
           </button>
           <button
-            className="guest-button"
+            className="btn-brand"
             onClick={(e) => {
               e.preventDefault();
               setUserLoginDetails(guestUserLoginDetails);
@@ -69,12 +68,12 @@ export const Login = () => {
         </div>
       </form>
 
-      <a className="signup-text">
-        Create your Account?
-        <NavLink className="signup-link" to="/signup">
-          <a className="Signup-link">Signup</a>
+      <p className="mt-4 text-center text-lg font-semibold">
+        Create your Account?{" "}
+        <NavLink className="text-gray-500 hover:text-brand" to="/signup">
+          Signup
         </NavLink>
-      </a>
+      </p>
     </div>
   );
 };

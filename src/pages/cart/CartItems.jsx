@@ -12,61 +12,65 @@ export function CartItems({ data, handleRemoveCart }) {
   const navigate = useNavigate();
   console.log(qty);
   return (
-    <div className="Cart-items">
-      <div className="cart-modal">
-        <div className="product-cart" key={_id}>
+    <div className="flex w-full flex-col items-center justify-between gap-4 rounded-2xl border border-[#bfbfbf] p-4 md:flex-row">
+      <div className="flex w-full flex-col items-center justify-between gap-4 sm:flex-row">
+        <div className="flex flex-col items-center gap-3 sm:flex-row">
           <img
-            style={{ cursor: "pointer" }}
-            className="cart-image"
+            className="h-40 w-40 cursor-pointer object-contain sm:h-48 sm:w-48"
             src={img}
             alt={title}
             onClick={() => navigate(`/products/${_id}`)}
           />
           <div
             onClick={() => navigate(`/products/${_id}`)}
-            className="cart-items-list"
+            className="flex cursor-pointer flex-col items-center gap-1 text-gray-500 sm:items-start"
           >
-            <h4 style={{ cursor: "pointer" }}>{title}</h4>
-            <p style={{ cursor: "pointer" }}>
-              rating:{rating} <i class="fa-solid fa-star"></i>
+            <h4 className="text-brand">{title}</h4>
+            <p>
+              rating:{rating} <i className="fa-solid fa-star"></i>
             </p>
-            <p style={{ cursor: "pointer" }}>
+            <p>
               {price}
-              <i class="fa-sharp fa-solid fa-indian-rupee-sign"></i>
+              <i className="fa-sharp fa-solid fa-indian-rupee-sign"></i>
             </p>
           </div>
         </div>
-        <div className="Cart-Qauntity">
-          <div className="Select-Quantity">
+        <div className="flex flex-col items-center gap-6">
+          <div className="flex h-10 w-[100px] flex-row items-center justify-center gap-4 rounded-[20px] border border-gray-500 text-2xl">
             <button
+              className="border-none bg-transparent"
               disabled={qty <= 1}
               onClick={() => changeCartQuantity(_id, "decrement")}
             >
-              <i class="fa-solid fa-minus"></i>
+              <i className="fa-solid fa-minus"></i>
             </button>
 
             {qty}
-            <button onClick={() => changeCartQuantity(_id, "increment")}>
-              <i class="fa-solid fa-plus qty-icon"></i>
+            <button
+              className="border-none bg-transparent"
+              onClick={() => changeCartQuantity(_id, "increment")}
+            >
+              <i className="fa-solid fa-plus qty-icon"></i>
             </button>
           </div>
           <p
-            className="remove-cart"
+            className="cursor-pointer text-xl font-medium text-blue-600 hover:font-semibold hover:text-brand"
             disabled={updateCartItems}
             onClick={() => handleRemoveCart(_id)}
           >
-            <i class="fa-solid fa-trash-can"></i> Remove
+            <i className="fa-solid fa-trash-can"></i> Remove
           </p>
         </div>
       </div>
 
-      <div className="price-Card">
-        <h3>
-          Rs.{price} <i class="fa-sharp fa-solid fa-indian-rupee-sign"></i>
+      <div className="flex flex-col items-center justify-center gap-3">
+        <h3 className="text-lg font-semibold">
+          Rs.{price}{" "}
+          <i className="fa-sharp fa-solid fa-indian-rupee-sign"></i>
         </h3>
         <button
           disabled={updateWishlist}
-          className="add-wislist-button"
+          className="btn-brand"
           onClick={() => {
             if (token) {
               if (isItemPresentInWishlist(Wishlist, _id)) {

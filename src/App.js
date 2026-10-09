@@ -1,4 +1,3 @@
-import "./App.css";
 import Mockman from "mockman-js";
 import { Routes, Route } from "react-router-dom";
 import { Header } from "./pages/header/header";
@@ -18,7 +17,7 @@ import { ToastContainer } from "react-toastify";
 import "react-toastify/dist/ReactToastify.css";
 function App() {
   return (
-    <div className="App">
+    <div className="min-h-screen bg-white">
       <Header />
       <ToastContainer position="bottom-right" autoClose={2000} />
       <Routes>

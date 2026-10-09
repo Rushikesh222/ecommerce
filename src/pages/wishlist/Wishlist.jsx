@@ -1,6 +1,5 @@
 import { useWishlist } from "../../context/WishlistContext";
 import { WishlistCard } from "./WishlistCard";
-import "./Wishlist.css";
 import { EmptyWishlist } from "./RemoveWishlist";
 export const WishList = () => {
   const { Wishlist, removeFromWishlist } = useWishlist();
@@ -9,10 +8,10 @@ export const WishList = () => {
   };
 
   return (
-    <div className="wishlist-Card">
-      <h1>WishList</h1>
+    <div className="flex w-full flex-col items-center px-4 py-6 capitalize">
+      <h1 className="mb-4 text-2xl font-bold md:text-3xl">WishList</h1>
       {Wishlist?.length > 0 ? (
-        <div className="wishlist-product-details">
+        <div className="flex w-full max-w-5xl flex-col gap-4">
           {Wishlist?.map((items) => {
             return (
               <WishlistCard

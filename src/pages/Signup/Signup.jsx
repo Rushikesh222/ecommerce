@@ -1,6 +1,5 @@
 import { useState } from "react";
 import { useAuth } from "../../context/Auth";
-import "./signup.css";
 import { NavLink } from "react-router-dom";
 export const Signup = () => {
   const { signupHandler } = useAuth();
@@ -15,12 +14,13 @@ export const Signup = () => {
     signupHandler(userSignupDetails);
   };
   return (
-    <div className="signup-from">
-      <h1>Sign Up</h1>
-      <form onSubmit={createAccount}>
-        <div className="signup-details">
+    <div className="mx-auto my-6 flex w-[min(350px,calc(100%-2rem))] flex-col items-center justify-center border border-[#bfbfbf] px-5 py-8 shadow-[5px_5px_5px_#aaaaaa]">
+      <h1 className="mb-4 text-2xl font-bold md:text-3xl">Sign Up</h1>
+      <form className="w-full" onSubmit={createAccount}>
+        <div className="flex flex-col text-[15px]">
           <label>First Name</label>
           <input
+            className="field-input mt-1"
             placeholder="First Name"
             type="text"
             onChange={(e) =>
@@ -30,9 +30,9 @@ export const Signup = () => {
               })
             }
           />
-          <br />
-          <label>Last Name</label>
+          <label className="mt-3">Last Name</label>
           <input
+            className="field-input mt-1"
             placeholder="Last Name"
             type="text"
             onChange={(e) =>
@@ -42,9 +42,9 @@ export const Signup = () => {
               })
             }
           />
-          <br />
-          <label>Email</label>
+          <label className="mt-3">Email</label>
           <input
+            className="field-input mt-1"
             placeholder="Email"
             type="text"
             onChange={(e) =>
@@ -54,9 +54,9 @@ export const Signup = () => {
               })
             }
           />
-          <br />
-          <label>Password</label>
+          <label className="mt-3">Password</label>
           <input
+            className="field-input mt-1"
             placeholder="Password"
             type="text"
             onChange={(e) =>
@@ -66,17 +66,19 @@ export const Signup = () => {
               })
             }
           />
-          <br />
         </div>
 
-        <button className="create-account" type="submit">
-          Create a Account
-        </button>
+        <div className="mt-4 flex justify-center">
+          <button className="btn-brand" type="submit">
+            Create a Account
+          </button>
+        </div>
       </form>
-      <NavLink className="login-link" to="/login">
-        <a className="login-link">
-          Login to existing account <i class="fa-solid fa-angle-right"></i>
-        </a>
+      <NavLink
+        className="mt-4 text-center text-lg font-semibold text-gray-500 hover:text-brand md:text-xl"
+        to="/login"
+      >
+        Login to existing account <i className="fa-solid fa-angle-right"></i>
       </NavLink>
     </div>
   );

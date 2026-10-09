@@ -1,7 +1,6 @@
 import { useNavigate } from "react-router-dom";
 import { useAuth } from "../../context/Auth";
 import { useCart } from "../../context/CartContext";
-import { useWishlist } from "../../context/WishlistContext";
 import { isItemInCart } from "../../utils/isItemInCart";
 import { toast } from "react-toastify";
 
@@ -10,23 +9,26 @@ export const WishlistCard = ({ data, handleRemoveWishlist }) => {
   const { token } = useAuth();
   const navigate = useNavigate();
   const { cartItems, addCartData, updateCartItems } = useCart();
-  const { removeFromWishlist } = useWishlist();
   return (
-    <div className="wishlist-product" key={_id}>
-      <img className="wishlist-image" src={img} alt="name" />
-      <div className="wishlist-product-details">
-        <h4>{title}</h4>
-        <p>
-          rating:{rating} <i class="fa-solid fa-star"></i>
+    <div className="flex w-full flex-col items-center justify-center gap-4 rounded-2xl border border-[#bfbfbf] p-4 sm:flex-row">
+      <img
+        className="h-auto w-full max-w-xs rounded-2xl border border-[#bfbfbf] object-contain shadow-[5px_5px_5px_#aaaaaa] sm:h-64 sm:w-64"
+        src={img}
+        alt="name"
+      />
+      <div className="flex w-full max-w-[220px] flex-col items-center justify-start gap-1 text-lg sm:text-xl">
+        <h4 className="text-center text-brand">{title}</h4>
+        <p className="text-gray-600">
+          rating:{rating} <i className="fa-solid fa-star"></i>
         </p>
-        <p>
+        <p className="text-gray-600">
           {price}
-          <i class="fa-sharp fa-solid fa-indian-rupee-sign"></i>
+          <i className="fa-sharp fa-solid fa-indian-rupee-sign"></i>
         </p>
       </div>
-      <div className="wishlist-button">
+      <div className="flex flex-col items-center justify-center gap-4 sm:h-48 sm:justify-between">
         <button
-          className="add-to-cart"
+          className="btn-brand"
           onClick={() => {
             if (token) {
               if (isItemInCart(cartItems, _id)) {
@@ -40,14 +42,13 @@ export const WishlistCard = ({ data, handleRemoveWishlist }) => {
             }
           }}
         >
-          {" "}
-          <i class="fa-solid fa-cart-shopping"></i>{" "}
+          <i className="fa-solid fa-cart-shopping"></i>{" "}
           {isItemInCart(cartItems, _id) ? "Go to Cart" : "Add to Cart"}
         </button>
         <button
-          className="remove-from-wishlist"
+          className="btn-brand"
           disabled={updateCartItems}
-          onClick={() => removeFromWishlist(_id)}
+          onClick={() => handleRemoveWishlist(_id)}
         >
           Remove from Wishlist
         </button>

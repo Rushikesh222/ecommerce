@@ -56,73 +56,74 @@ export const CheckoutCard = () => {
   };
 
   return (
-    <div className="checkout-block">
-      <h4>Order Details</h4>
-      <div className="check-border">
-        <div className="check-items">
-          <p>
+    <div className="flex w-full flex-col items-center">
+      <h4 className="text-lg font-semibold">Order Details</h4>
+      <div className="my-3 w-full border-y-2 border-gray-500 py-2">
+        <div className="flex w-full flex-row items-start justify-between">
+          <p className="text-black">
             <strong>item</strong>
           </p>
-          <p>
+          <p className="text-black">
             <strong>Quantity</strong>
           </p>
         </div>
         {cartItems.map((data) => {
           const { _id, title, qty } = data;
           return (
-            <div className="items-details" key={_id}>
-              <p>{title}</p>
-              <p>{qty}</p>
+            <div
+              className="mt-2 flex w-full flex-row items-start justify-between gap-3"
+              key={_id}
+            >
+              <p className="text-sm text-black">{title}</p>
+              <p className="text-sm text-black">{qty}</p>
             </div>
           );
         })}
       </div>
-      <div className="check-border-price">
-        <div className="checkout-price">
-          <h4>Price Details</h4>
-          <p>{priceDetails.quantity}</p>
+      <div className="mb-3 w-full border-b-2 border-gray-500 pb-2">
+        <div className="flex w-full flex-row items-start justify-between">
+          <h4 className="text-[15px] text-black">Price Details</h4>
+          <p className="text-[15px] text-black">{priceDetails.quantity}</p>
         </div>
       </div>
-      <div className="check-border-price">
-        <li className="checkout-price">
+      <div className="mb-3 w-full border-b-2 border-gray-500 pb-2">
+        <li className="flex w-full list-none flex-row items-start justify-between">
           <strong>Discount</strong>
-          <p>Rs.{priceDetails.discount}</p>
+          <p className="text-[15px] text-black">Rs.{priceDetails.discount}</p>
         </li>
       </div>
-      <div className="check-border-price">
-        <li className="checkout-price">
+      <div className="mb-3 w-full border-b-2 border-gray-500 pb-2">
+        <li className="flex w-full list-none flex-row items-start justify-between">
           <strong>Grand Total</strong>
-          <p>Rs.{priceDetails.totalPrice - priceDetails.discount}</p>
+          <p className="text-[15px] text-black">
+            Rs.{priceDetails.totalPrice - priceDetails.discount}
+          </p>
         </li>
       </div>
 
-      <div className="checkout-order">
-        <h4>Deliver to</h4>
+      <div className="mb-3 w-full border-b-2 border-gray-500 pb-3">
+        <h4 className="text-[15px] text-black">Deliver to</h4>
       </div>
 
       {Object.values(checkOut)[0].length > 0 ? (
-        <div className="address-details">
+        <div className="flex w-full flex-col items-start">
           <p>
             <strong>{checkOut.name}</strong>
           </p>
           <div>
-            <p>{checkOut.street}</p>
-            <p>
+            <p className="text-black">{checkOut.street}</p>
+            <p className="text-black">
               {checkOut.city},{checkOut.state}
             </p>
-            <p>Pincode: {checkOut.pincode}</p>
+            <p className="text-black">Pincode: {checkOut.pincode}</p>
           </div>
         </div>
       ) : (
-        <p>No Adrress Found</p>
+        <p className="text-black">No Adrress Found</p>
       )}
       <button
-        className="place-order-btn"
-        // disabled={
-        //   Object.values(checkOut)[0].length === 0 || cartItems.length === 0
-        // }
+        className="btn-brand my-5"
         onClick={() => {
-          // displayRazorpay();
           navigate("/order-summary");
         }}
       >
